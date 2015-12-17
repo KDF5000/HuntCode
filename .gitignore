@@ -18,4 +18,4 @@
 
 # Ignore all bin
 /bin/*
-
+.idea/
