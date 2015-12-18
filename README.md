@@ -1,5 +1,7 @@
 **HuntCode**, 高级软件工程练习项目
 
+[TOC]
+
 # 系统框架搭建
 ```zsh
 rails new HuntCode
@@ -47,9 +49,6 @@ Gemfile | 应用所需的 gem
 Gemfile.lock | gem 列表，确保这个应用的副本使用相同版本的 gem
 config.ru | Rack 中间件的配置文件
 .gitignore | Git 忽略的文件
-app/assets：存放程序的静态资源，例如图片、JavaScript 和样式表；
-lib/assets：存放自己的代码库，或者共用代码库的静态资源；
-vendor/assets：存放他人的静态资源，例如 JavaScript 插件，或者 CSS 框架；
 
 # 数据库设计
 
