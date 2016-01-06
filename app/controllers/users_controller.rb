@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    render :inline => @users.to_json
+
   end
 
   # GET /users/1
