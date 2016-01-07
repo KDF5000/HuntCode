@@ -1,0 +1,47 @@
+.main{
+    height: 400px;
+}
+.com_width{
+    width: 800px;
+    margin: 0 auto;
+}
+.reg_login_ul{
+    margin: 45px auto 10px ;
+    height: 57px;
+    border-bottom: rgba(146, 146, 146, 0.46) 1px solid;
+}
+.reg_login_ul a{
+    display: block;
+    height: 54px;
+    line-height: 54px;
+    width: 120px;
+    text-align: center;
+    font-size: 16px;
+    color: #888888;
+}
+
+.reg_login_ul .login_li{
+    border-right: rgba(146, 146, 146, 0.46) 1px solid;
+}
+.reg_login_ul .active{
+    border-bottom: cornflowerblue  3px solid;
+}
+.active a{
+    color: cornflowerblue;
+}
+.form-tips{
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 16px;
+    color: #888888;
+}
+.form-control{
+    width: 90%;
+    margin-bottom: 25px;
+    height: 40px;
+}
+.btn-primary{
+    width: 30%;
+    height: 40px;
+}
