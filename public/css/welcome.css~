@@ -7,7 +7,7 @@
 #login_reg{
     height: 36px;
     line-height: 36px;
-    font-size: 16px;
+    font-size: 18px;
 }
 #sub-slide{
     /*padding-left: 100px;*/
