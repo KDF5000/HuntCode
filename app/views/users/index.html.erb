@@ -5,9 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>X</th>
       <th>X username</th>
-      <th>X passwd</th>
       <th>X email</th>
       <th>X projects</th>
       <th colspan="3"></th>
@@ -17,11 +15,10 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.x_id %></td>
+
         <td><%= user.x_username %></td>
-        <td><%= user.x_passwd %></td>
         <td><%= user.x_email %></td>
-        <td><%= user.x_projects %></td>
+        <td><%= user.x_projects_id %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

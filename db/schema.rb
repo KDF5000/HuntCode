@@ -11,26 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217075550) do
+ActiveRecord::Schema.define(version: 20160106161228) do
 
   create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.text     "info"
-    t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "x_id"
-    t.string   "x_username"
-    t.string   "x_passwd"
-    t.string   "x_email"
-    t.integer  "x_projects_id"
+    t.string   "title"
+    t.string   "intro_content"
+    t.integer  "users_id"
+    t.string   "source_url"
+    t.integer  "status"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
+  add_index "projects", ["users_id"], name: "index_projects_on_users_id"
+
+  create_table "stars", force: :cascade do |t|
+    t.integer  "users_id"
+    t.integer  "projects_id"
+    t.datetime "created_time"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "stars", ["projects_id"], name: "index_stars_on_projects_id"
+  add_index "stars", ["users_id"], name: "index_stars_on_users_id"
+
+  create_table "subscribes", force: :cascade do |t|
+    t.string   "sub_email"
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "thirdparty", force: :cascade do |t|
+    t.string   "identifier"
+    t.integer  "users_id"
+    t.integer  "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "thirdparty", ["users_id"], name: "index_thirdparty_on_users_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "x_username"
+    t.string   "x_email"
+    t.integer  "x_projects_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.string   "avatar"
+  end
+
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
   add_index "users", ["x_projects_id"], name: "index_users_on_x_projects_id"
 
 end

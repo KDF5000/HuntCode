@@ -1,18 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>X:</strong>
-  <%= @user.x_id %>
-</p>
-
-<p>
   <strong>X username:</strong>
   <%= @user.x_username %>
-</p>
-
-<p>
-  <strong>X passwd:</strong>
-  <%= @user.x_passwd %>
 </p>
 
 <p>
@@ -22,7 +12,7 @@
 
 <p>
   <strong>X projects:</strong>
-  <%= @user.x_projects %>
+  <%= @user.x_projects_id %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
