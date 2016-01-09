@@ -10,8 +10,6 @@
 
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="jQuery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link href="css/slide_common.css" type="text/css" rel="stylesheet">
@@ -58,15 +56,14 @@
         <div class="reg-login-wrap raw">
             <div class="reg-login-wrapleft col-md-6">
                 <span class="form-tips">使用HuntCode账号登录</span>
-                <form >
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">登录</button>
-                </form>
+
+                    <%= form_for(:session, url: sessions_path) do |f| %>
+                        <%= f.email_field :x_email, class: "form-control", placeholder: "Email" %>
+                        <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+                        <%= f.submit "登录", class: "btn btn-primary" %>
+                    <% end %>
+
+
             </div>
             <div class="sso-content col-md-6">
                 <span class="form-tips">使用第三方账号登陆</span>

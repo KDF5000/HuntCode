@@ -28,9 +28,8 @@ ActiveRecord::Schema.define(version: 20160106161228) do
   create_table "stars", force: :cascade do |t|
     t.integer  "users_id"
     t.integer  "projects_id"
-    t.datetime "created_time"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "stars", ["projects_id"], name: "index_stars_on_projects_id"
