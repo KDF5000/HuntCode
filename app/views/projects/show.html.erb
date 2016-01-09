@@ -1,19 +1,221 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>HuntCode</title>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="jQuery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/slide_common.css" type="text/css" rel="stylesheet">
+    <link href="css/BigSlide.css" type="text/css" rel="stylesheet">
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="js/BigSlide.js" type="text/javascript"></script>
+    <link href="css/common.css" type="text/css" rel="stylesheet">
+    <link href="css/projectDetail.css" type="text/css" rel="stylesheet">
+</head>
 
-<p>
-  <strong>Info:</strong>
-  <%= @project.info %>
-</p>
+<body>
+<div class="container">
+    <div class='head row'>
+        <!-- <div class="input-group">
+          <input type="text" class="form-control" id="search" placeholder="Search">
+          <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+        </div> -->
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control" id="search" placeholder="Search">
+                <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="col-md-4  align-center ">
+            <ul class="list-inline" id="menu-list">
+                <li><a href="#">发现</a></li>
+                <li><img src="images/logo.png" alt="huntcode" class="logo img-circle"></li>
+                <li><a href="#">项目库</a></li>
+            </ul>
 
-<p>
-  <strong>Url:</strong>
-  <%= @project.url %>
-</p>
+        </div>
+        <div id="login_reg" class="col-md-4 align-right">
+            <a class='' href='#'>登录/注册</a>
+        </div>
+    </div>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+</div>
+
+<div class="main container">
+    <div class="">
+        <div class="project-detail row">
+            <div class="project-left col-lg-9">
+                <div>
+                    <img src="images/logo.png" class="avatar img-circle fl">
+                    <div class="project-detail-des fl">
+                        <h3><a href="#">大数据框架Spark</a></h3>
+                        <span class="project-content">处理大数据的开源框架，集成各种机器学习库，值得推荐,处理大数据的开源框架，集成各种机器学习库，值得推荐,处理大数据的开源框架，集成各种机器学习库，值得推荐
+                        处理大数据的开源框架，集成各种机器学习库，值得推荐,处理大数据的开源框架，集成各种机器学习库，值得推荐,处理大数据的开源框架，集成各种机器学习库，值得推荐</span>
+                    </div>
+                    <div class="share">
+                        <div>分享到:</div>
+                        <div class="share-wechat">
+                            <a href="javascript:void(0)" >
+                                <i class="svg-wechat"></i>
+                                <span>微信</span>
+                            </a>
+                            <div class="dropdown share-dropdown">
+                                <img src="http://api.qrserver.com/v1/create-qr-code/?data=http://baidu.com/" alt="?data=http%3a%2f%2fnext.36kr" height="156" width="156">
+                                <span>微信扫一扫：分享</span>
+                            </div>
+                        </div>
+                        <div class="share-weibo">
+                            <a>
+                                <i class="svg-weibo"></i>
+                                <span>微博</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+                <div id="comments">
+                    <span class="comment-tips">评论(10)</span>
+                    <div id="comment-form">
+                        <form>
+                            <textarea class="form-control" rows="4"></textarea>
+                            <button type="submit" class="btn btn-primary post-comment">提交评论</button>
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="split-line"></div>
+                    <ul id="comment-data">
+
+                        <li class="comment-item">
+                            <img src="images/logo.png" class="avatar img-circle fl">
+                            <div class="comment-info">
+                                <div class="comment-info-head">
+                                    <span class="commenter-name">小王子</span>
+                                    <span class="commenter-title">&nbsp;&nbsp;软件工程师</span>
+                                    <span class="comment-time">８小时前</span>
+                                </div>
+
+                                <div class="comment-content">
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                        <li class="comment-item">
+                            <img src="logo.png" class="avatar img-circle fl">
+                            <div class="comment-info">
+                                <div class="comment-info-head">
+                                    <span class="commenter-name">小王子</span>
+                                    <span class="commenter-title">&nbsp;&nbsp;软件工程师</span>
+                                    <span class="comment-time">８小时前</span>
+                                </div>
+
+                                <div class="comment-content">
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                        <li class="comment-item">
+                            <img src="images/logo.png" class="avatar img-circle fl">
+                            <div class="comment-info">
+                                <div class="comment-info-head">
+                                    <span class="commenter-name">小王子</span>
+                                    <span class="commenter-title">&nbsp;&nbsp;软件工程师</span>
+                                    <span class="comment-time">８小时前</span>
+                                </div>
+
+                                <div class="comment-content">
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-right col-lg-3">
+                <div>
+                    <span class="project-title-tips"><span>12</span>人点赞</span>
+                    <ul class="star-users list-inline">
+                        <li><img src="images/logo.png" class="avatar img-circle"></li>
+                        <li><img src="images/logo.png" class="avatar img-circle"></li>
+                        <li><img src="images/logo.png" class="avatar img-circle"></li>
+                        <li><img src="images/logo.png" class="avatar img-circle"></li>
+                        <li><img src="logo.png" class="avatar img-circle"></li>
+                        <li><img src="images/logo.png" class="avatar img-circle"></li>
+                        <li><img src="images/logo.png" class="avatar img-circle"></li>
+                        <li><img src="images/logo.png" class="avatar img-circle"></li>
+                    </ul>
+                </div>
+                <div class="sim-project">
+                    <span class="project-title-tips">相似项目</span>
+                    <ul class="star-users list-inline">
+                        <li><a href="#">机器学习框架Spark</a></li>
+                        <li><a href="#">机器学习框架Spark</a></li>
+                        <li><a href="#">机器学习框架Spark</a></li>
+                        <li><a href="#">机器学习框架Spark</a></li>
+                        <li><a href="#">机器学习框架Spark</a></li>
+                        <li><a href="#">机器学习框架Spark</a></li>
+                        <li><a href="#">机器学习框架Spark</a></li>
+                        <li><a href="#">机器学习框架Spark</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="foot-top">
+        <h3><span class="main-color">HUNTCODE</span> 发现好项目</h3>
+    </div>
+    <div class="foot-link">
+        <a target="_blank" href="#">关于我们</a>
+        <a target="_blank" href="#">联系我们</a>
+        <a target="_blank" href="#">意见反馈</a>
+    </div>
+    <div class="partner">
+                <span>
+                合作伙伴
+                </span>
+        <a target="_blank" href="http://fir.im/">
+            <img src="images/partner_02.png">
+        </a>
+        <a target="_blank" href="http://www.3wnb.com/">
+            <img src="images//partner_03.png">
+        </a>
+        <a target="_blank" href="http://www.pgyer.com/">
+            <img src="images//partner_01.png">
+        </a>
+        <a target="_blank" href="https://www.teambition.com/">
+            <img src="images//20150302043118846.png">
+        </a>
+        <a href="http://www.woshipm.com" target="_blank">
+            <img src="images//20150527105842729.png">
+        </a>
+    </div>
+    <div class="foot_copyright">
+        Copyright 2014-2015 cyzone.cn All rights reserved 京ICP证070362号 京ICP备08103950号 京公海网安备110108000742号新出发京零字第朝140005
+    </div>
+</div>
+
+
+</body>
+</html>

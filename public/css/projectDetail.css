@@ -1,0 +1,155 @@
+.main{
+    min-height: 400px;
+}
+.com_width{
+    width: 800px;
+    margin: 0 auto;
+}
+.project-detail{
+    margin-top: 50px;
+}
+.project-right{
+    border-left:  rgba(146, 146, 146, 0.46)  1px solid;
+    min-height: 200px;
+    padding-left: 25px;
+}
+.project-detail-des{
+    width: 92%;
+    margin-left: 10px;
+}
+.project-content{
+    display: block;
+    margin-top: 5px;
+    font-size: 16px;
+}
+.share{
+    float: right;
+    margin-top: 20px;
+    margin-right: 18px;
+    /*font-size: 16px;*/
+}
+.share div{
+    display: inline-block;
+}
+.share i{
+    width: 20px;
+    height: 17px;
+    display: inline-block;
+    margin-top: -3px;
+    vertical-align: middle;
+}
+.share a{
+    margin-left: 5px;
+}
+.svg-wechat{
+    background: url("../images/weixin.png") no-repeat scroll left top transparent;
+}
+.svg-weibo{
+    background: url("../images/weibo.png") no-repeat scroll left top transparent;
+}
+.dropdown {
+    background-clip: padding-box;
+    background-color: #FFF;
+    border: 2px solid #DDD;
+    border-radius: 3px;
+    font-weight: 600;
+    line-height: 28px;
+    text-align: center;
+    margin: 7px 0px 0px;
+    min-width: 84px;
+    padding: 12px;
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease 0s;
+    right: 25px;
+    top:150px;
+}
+.share .share-dropdown {
+    width: 180px;
+}
+.share-wechat:hover .dropdown{
+    opacity:1;
+    top:150px;
+    visibility:visible
+}
+.split-line{
+    background:  rgba(146, 146, 146, 0.46);
+    height: 1px;
+    margin-top: 20px;
+}
+#comments{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.clear{
+    clear: both;
+}
+.comment-tips{
+    font-size: 18px;
+}
+#comment-data{
+    margin-top: 20px;
+}
+.comment-item{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.comment-info{
+    font-size: 16px;
+    line-height: 28px;
+}
+.comment-info-head{
+    padding-right: 18px;
+}
+.comment-item img{
+    float: left;
+}
+.commenter-name{
+    float: left;
+    margin-left: 10px;
+    font-weight: 600;
+}
+.commenter-title{
+    font-size: 14px;
+}
+.comment-time{
+    float: right;
+    font-size: 12px;
+    color: #777777;
+
+}
+.comment-content{
+    float: left;
+    width: 92%;
+    margin-left: 10px;
+}
+textarea{
+    resize: none;
+}
+#comment-form{
+    margin-top: 20px;
+    /*padding-left: 20px;*/
+    /*padding-right: 15px;*/
+}
+.post-comment{
+    margin-top: 10px;
+    float: right;
+}
+.project-title-tips{
+    font-size: 18px;
+    /*color: #9d9d9d;*/
+}
+.star-users{
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.star-users li{
+    padding: 5px;
+}
+.sim-project{
+    margin-top: 10px;
+}
