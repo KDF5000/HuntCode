@@ -20,7 +20,7 @@
     <link href="css/log_reg.css" type="text/css" rel="stylesheet">
 </head>
 
-<body>
+<body onhashchange="hashChanged();">
 <div class="container">
     <div class='head row'>
         <!-- <div class="input-group">
@@ -50,21 +50,37 @@
 <div class="main container">
     <div class="reg_login com_width">
         <ul class="reg_login_ul list-inline">
-            <li class="login_li active"><a href="#">登录</a></li>
-            <li><a href="#">注册</a></li>
+            <li class="login_li active"><a href="#signin">登录</a></li>
+            <li class="signup_li"><a href="#signup">注册</a></li>
         </ul>
         <div class="reg-login-wrap raw">
-            <div class="reg-login-wrapleft col-md-6">
+            <div class="reg-login-wrapleft col-md-6" id="login">
                 <span class="form-tips">使用HuntCode账号登录</span>
 
                     <%= form_for(:session, url: sessions_path) do |f| %>
+                    <div class="form-group">
                         <%= f.email_field :x_email, class: "form-control", placeholder: "Email" %>
+                    </div>
+                    <div class="form-group">
                         <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+                    </div>
                         <%= f.submit "登录", class: "btn btn-primary" %>
                     <% end %>
-
-
             </div>
+
+            <div class="reg-login-wrapleft col-md-6" id="register" style="display: none;">
+                <span class="form-tips">注册HuntCode账号</span>
+
+                    <%= form_for(:user, url: users_path) do |f| %>
+
+                        <%= f.email_field :x_email, class: "form-control", placeholder: "请输入邮箱" %>
+                        <%= f.text_field :x_username, class: "form-control", placeholder: "输入用户名" %>
+                        <%= f.password_field :password, class: "form-control", placeholder: "输入密码" %>
+                        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "确认密码" %>
+                        <%= f.submit "注册", class: "btn btn-primary" %>
+                    <% end %>
+            </div>
+
             <div class="sso-content col-md-6">
                 <span class="form-tips">使用第三方账号登陆</span>
                 <ul>
@@ -108,6 +124,31 @@
     </div>
 </div>
 
-
+<!-- 处理signin和signup标签 -->
+<script type="text/javascript">
+function signup(){
+    $("li.login_li").removeClass("active");
+    $("li.signup_li").addClass("active");
+    $("#login")[0].style.display="none";
+    $("#register")[0].style.display="block";
+};
+function signin(){
+    $("li.signup_li").removeClass("active");
+    $("li.login_li").addClass("active");
+    $("#login")[0].style.display="block";
+    $("#register")[0].style.display="none";
+};
+function hashChanged() {
+    var hash = window.location.hash;
+    if (hash == "#signin") {
+        signin();
+    }
+    else if (hash == "#signup") {
+        signup();
+    };
+};
+// 页面加载完成执行一次
+hashChanged();
+</script>
 </body>
 </html>
