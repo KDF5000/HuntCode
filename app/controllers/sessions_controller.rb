@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
-  def new
-
+  # GET /loginReg
+  # 登录注册界面
+  def loginReg
+    render "users/loginReg.html"
   end
+
   def create
     user = User.find_by(x_email: params[:session][:x_email].downcase)
     if user && user.authenticate(params[:session][:password])
@@ -15,7 +18,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def
-    destroy
+  def destroy
   end
 end
