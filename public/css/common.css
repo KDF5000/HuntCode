@@ -1,3 +1,9 @@
+a{
+    color: #333;
+}
+a:hover{
+    background-color: transparent;
+}
 .avatar{
     width: 40px;
     height: 40px;
@@ -18,7 +24,6 @@
     /*padding-right: 100px;*/
 }
 #subscribe{
-
 }
 .carousel-caption{
     top: 10px;
@@ -36,7 +41,6 @@
 .date-time{
     margin-top: 30px;
     margin-bottom: 30px;
-
 }
 .square-content{
     width: 40px;
@@ -44,7 +48,6 @@
     margin-left: auto;
     margin-right: auto;
 }
-
 .square-content .square{
     width: 40px;
     height:40px;
@@ -63,8 +66,6 @@
     color: #99ccff;
     font-size: 12px;
     padding: 3px;
-
-
 }
 .trigngle-icon{
     background: url("../images/triangle.png") no-repeat;
@@ -86,18 +87,17 @@
 }
 .rotate45{
     transform:rotate(45deg);
-    -ms-transform:rotate(45deg); 	/* IE 9 */
-    -moz-transform:rotate(45deg); 	/* Firefox */
+    -ms-transform:rotate(45deg); /* IE 9 */
+    -moz-transform:rotate(45deg); /* Firefox */
     -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
-    -o-transform:rotate(45deg); 	/* Opera */
+    -o-transform:rotate(45deg); /* Opera */
 }
-
 .rotate-45{
     transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg); 	/* IE 9 */
-    -moz-transform:rotate(-45deg); 	/* Firefox */
+    -ms-transform:rotate(-45deg); /* IE 9 */
+    -moz-transform:rotate(-45deg); /* Firefox */
     -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
-    -o-transform:rotate(-45deg); 	/* Opera */
+    -o-transform:rotate(-45deg); /* Opera */
 }
 .block{
     display: block;
@@ -198,7 +198,6 @@ li.user_ava_li{
     color: #337AB7;
     text-decoration: none;
 }
-
 .partner{
     margin-top: 15px;
 }
@@ -213,7 +212,6 @@ li.user_ava_li{
     color: #3A3A3A;
     overflow: hidden;
 }
-
 #menu-list li{
     line-height: 34px;
     font-size: 16px;

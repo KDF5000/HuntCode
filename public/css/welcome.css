@@ -1,3 +1,7 @@
+.avatar{
+    width: 40px;
+    height: 40px;
+}
 .head{
     padding-top: 15px;
     padding-bottom: 15px;
@@ -82,18 +86,18 @@
 }
 .rotate45{
     transform:rotate(45deg);
-    -ms-transform:rotate(45deg);    /* IE 9 */
-    -moz-transform:rotate(45deg);   /* Firefox */
+    -ms-transform:rotate(45deg); 	/* IE 9 */
+    -moz-transform:rotate(45deg); 	/* Firefox */
     -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
-    -o-transform:rotate(45deg);     /* Opera */
+    -o-transform:rotate(45deg); 	/* Opera */
 }
 
 .rotate-45{
     transform:rotate(-45deg);
-    -ms-transform:rotate(-45deg);   /* IE 9 */
-    -moz-transform:rotate(-45deg);  /* Firefox */
+    -ms-transform:rotate(-45deg); 	/* IE 9 */
+    -moz-transform:rotate(-45deg); 	/* Firefox */
     -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
-    -o-transform:rotate(-45deg);    /* Opera */
+    -o-transform:rotate(-45deg); 	/* Opera */
 }
 .block{
     display: block;
@@ -208,7 +212,8 @@ li.user_ava_li{
     color: #3A3A3A;
     overflow: hidden;
 }
- #menu-list li{
-        line-height: 34px;
-        font-size: 16px;
+
+#menu-list li{
+    line-height: 34px;
+    font-size: 16px;
 }
