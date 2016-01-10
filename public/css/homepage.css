@@ -1,0 +1,145 @@
+.clear{
+    clear: both;
+}
+.profile{
+    background: #337AB7 ;
+}
+.profile-container{
+    min-width: 940px;
+    width: 940px;
+    padding: 50px 20px;
+
+}
+.user-img-info{
+    float: left;
+}
+.user-img{
+    width: 80px;
+    height: 80px;
+}
+.edit{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-left: 10px;
+    background-image: url("../images/edit.png");
+}
+.user-info{
+    margin-left: 20px;
+    float: left;
+}
+.user-info .user-name{
+    color: #FFF;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 36px;
+}
+.user-info .user-subtitle{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+.user-info .user-bio{
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0px;
+    font-size: 1.2rem;
+    line-height: 21px;
+}
+
+.user-follow{
+    float: right;
+    margin-top: 10px;
+    margin-right:50px;
+}
+.follow-following, .follow-follower{
+    float: left;
+    padding: 2px;
+}
+
+.follow-number{
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    width: 80px;
+}
+.follow-label{
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    width: 80px;
+}
+.follow-follower{
+    border-left: rgba(255, 255, 255, 0.33) 1px solid;
+}
+
+.profile-nav{
+    background: rgba(146, 146, 146, 0.1);
+    height: 70px;
+    border-bottom: rgba(146, 146, 146, 0.2) 1px solid;
+}
+.profile-nav .nav-menu{
+    height: 70px;
+    width: 940px;
+    margin: auto;
+}
+.profile-nav .nav-menu li{
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    font-size: 18px;
+    padding: 0px 20px;
+}
+.profile-nav .nav-menu li a{
+    color: #9d9d9d;
+}
+.profile-nav .nav-menu li a:hover{
+    color: #337AB7;
+}
+
+.profile-nav .nav-menu li.active{
+    border-bottom: #337AB7 2px solid;
+}
+.profile-nav .nav-menu li.active a{
+    color: #337AB7;
+}
+#nav-content{
+    width: 940px;
+    min-height: 300px;
+    margin: 50px auto;
+}
+#default-content{
+    text-align: center;
+    font-size: 16px;
+    color: rgba(146, 146, 146, 0.8);
+}
+.edit-avatar{
+    width: 100px;
+    height: 100px;
+    display: block;
+    padding: 5px;
+}
+#user-info-edit form, #user-pass-edit form, #user-subscribe form{
+    margin-left: 10px;
+}
+#user-info-edit .form-group, #user-pass-edit .form-group, #user-subscribe .form-group{
+    margin-top: 5px;
+}
+
+#user-info-edit .form-group input, #user-pass-edit .form-group input, #user-subscribe .form-group input{
+    height: 40px;
+    margin: 5px 0;
+}
+.form-tips{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0px;
+    display: block;
+}
+#user-subscribe .radio{
+    margin: 0px;
+    padding: 0px;
+}
+#user-subscribe button{
+    margin: 10px 0px;
+}
