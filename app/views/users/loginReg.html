@@ -37,7 +37,7 @@
         <div class="col-md-4  align-center ">
             <ul class="list-inline" id="menu-list">
                 <li><a href="#">发现</a></li>
-                <li><img src="images/logo.png" alt="huntcode" class="logo img-circle"></li>
+                <li><img src="/images/logo.png" alt="huntcode" class="logo img-circle"></li>
                 <li><a href="#">项目库</a></li>
             </ul>
 
@@ -60,10 +60,10 @@
 
                     <%= form_for(:session, url: sessions_path) do |f| %>
                     <div class="form-group">
-                        <%= f.email_field :x_email, class: "form-control", placeholder: "Email" %>
+                        <%= f.email_field :x_email, class: "form-control", placeholder: "邮箱" %>
                     </div>
                     <div class="form-group">
-                        <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+                        <%= f.password_field :password, class: "form-control", placeholder: "密码" %>
                     </div>
                         <%= f.submit "登录", class: "btn btn-primary" %>
                     <% end %>
@@ -83,9 +83,9 @@
             </div>
 
             <div class="sso-content col-md-6">
-                <span class="form-tips">使用第三方账号登陆</span>
+                <span class="form-tips">使用第三方账号登录</span>
                 <ul>
-                    <li><a href="https://github.com/login/oauth/authorize?client_id=ea6bbfeb21340b60c869&state=hello&redirect_uri=http://localhost:63342/HuntCode/huntcode.html"><img  class="img-responsive" src="images/github.png" title="GitHub登录" alt="GitHub登录" ></a></li>
+                    <li><a href="https://github.com/login/oauth/authorize?client_id=ea6bbfeb21340b60c869&state=hello&redirect_uri=http://localhost:63342/HuntCode/huntcode.html"><img  class="img-responsive" src="/images/github.png" title="GitHub登录" alt="GitHub登录" ></a></li>
                 </ul>
             </div>
         </div>
@@ -105,19 +105,19 @@
                 合作伙伴
                 </span>
         <a target="_blank" href="http://fir.im/">
-            <img src="images/partner_02.png">
+            <img src="/images/partner_02.png">
         </a>
         <a target="_blank" href="http://www.3wnb.com/">
-            <img src="images//partner_03.png">
+            <img src="/images//partner_03.png">
         </a>
         <a target="_blank" href="http://www.pgyer.com/">
-            <img src="images//partner_01.png">
+            <img src="/images//partner_01.png">
         </a>
         <a target="_blank" href="https://www.teambition.com/">
-            <img src="images//20150302043118846.png">
+            <img src="/images//20150302043118846.png">
         </a>
         <a href="http://www.woshipm.com" target="_blank">
-            <img src="images//20150527105842729.png">
+            <img src="/images//20150527105842729.png">
         </a>
     </div>
     <div class="foot_copyright">
