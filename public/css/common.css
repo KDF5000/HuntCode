@@ -216,3 +216,7 @@ li.user_ava_li{
     line-height: 34px;
     font-size: 16px;
 }
+#dropdown-menu{
+    right: -60px;
+    top: 30px;
+}
