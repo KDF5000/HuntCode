@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :signed_in_user, only: [:create, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
   # GET /projects
   # GET /projects.json
   def index
@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @project = Project.find(params[:id])
   end
 
   # GET /projects/new
@@ -25,16 +26,18 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
-
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
-      else
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    #@project = Project.new(project_params)
+    @project = current_user.projects.build(project_params)
+    #respond_to do |format|
+    if @project.save
+      #format.html { redirect_to @project, notice: 'Project was successfully created.' }
+      #format.json { render :show, status: :created, location: @project }
+      flash[:success] = "项目创建成功！"
+      redirect_to @project
+    else
+      #format.html { render :new }
+      #format.json { render json: @project.errors, status: :unprocessable_entity }
+      render 'new'
     end
   end
 
@@ -63,6 +66,11 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def signed_in_user
+      unless signed_in?
+        redirect_to '/loginReg', notice: "Please sign in."
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
@@ -70,6 +78,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :info, :url)
+      params.require(:project).permit(:title, :intro_content, :source_url)
     end
 end
