@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :projects
+  has_many :stars
+  has_many :projects, :through=> :stars
   before_save { self.x_email = x_email.downcase }
   before_create :create_remember_token
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

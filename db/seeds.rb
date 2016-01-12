@@ -12,10 +12,15 @@ projects = [{:title=>"pycharm",:intro_content=>"python ide",:users_id =>1 ,:sour
 # users = [{:x_id=>"123456", :x_username=>"jinjay",:x_passwd=>"123456",:x_email=>"jinjay@qq.com",:x_projects_id=>1},
 #          {:x_id=>"123457", :x_username=>"qy",:x_passwd=>"123456",:x_email=>"qy@qq.com",:x_projects_id=>2}]
 
+stars = [{:user_id=>1,:project_id=>1},{:user_id=>2,:project_id=>2}]
+
 projects.each do |project|
   Project.create!(project)
 end
 
+stars.each do |star|
+  Star.create!(star)
+end
 # users.each do |user|
 #   User.create!(user)
 # end

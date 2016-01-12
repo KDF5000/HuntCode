@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -16,9 +17,8 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :projects
-  resources :users do
-    resources :projects
-  end
+  resources :users
+  resources :stars
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/loginReg', to: 'sessions#loginReg', via: 'get'

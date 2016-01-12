@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160110125815) do
+ActiveRecord::Schema.define(version: 20160112034118) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "title"
@@ -26,15 +26,13 @@ ActiveRecord::Schema.define(version: 20160110125815) do
   add_index "projects", ["users_id"], name: "index_projects_on_users_id"
 
   create_table "stars", force: :cascade do |t|
-    t.integer  "users_id"
-    t.integer  "projects_id"
-    t.datetime "created_time"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "stars", ["projects_id"], name: "index_stars_on_projects_id"
-  add_index "stars", ["users_id"], name: "index_stars_on_users_id"
+  add_index "stars", ["user_id"], name: "index_stars_on_user_id"
+  add_index "stars", ["project_id"], name: "index_stars_on_project_id"
 
   create_table "subscribes", force: :cascade do |t|
     t.string   "sub_email"
