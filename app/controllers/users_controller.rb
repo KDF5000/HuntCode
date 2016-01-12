@@ -71,6 +71,23 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def github_login
+    @code = params[:code]
+    # 获取access_token
+    uri = URI.parse("https://github.com/login/oauth/access_token")
+    data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"http://localhost:3000/github/login"}
+    res = Net::HTTP.post_form(uri, data)
+    info = res.body.split('&')
+    access_token_arr = info[0].split('=')
+    puts access_token_arr[1]
+    access_token= access_token_arr[1]
+    #获取用户信息
+    uri = URI.parse('https://api.github.com/user?access_token='+access_token)
+    res = Net::HTTP.get(uri)
+    render :inline => res
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -91,4 +108,5 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
+
 end
