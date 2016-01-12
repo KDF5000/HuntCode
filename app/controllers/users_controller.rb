@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @user_project = @user.projects(params[:id])
     # render "users/show.html.erb"
   end
 
