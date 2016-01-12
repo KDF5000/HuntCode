@@ -1,0 +1,17 @@
+.modal-body form{
+    width: 95%;
+    margin: auto;
+}
+
+.modal-body input.form-control{
+    margin-bottom: 25px;
+    height: 40px;
+    margin-top: 5px;
+}
+.modal-body .btn-primary{
+    width: 30%;
+    height: 40px;
+}
+.red{
+    color: #ff785f;
+}
