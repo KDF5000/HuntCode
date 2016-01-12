@@ -1,0 +1,25 @@
+<%= form_for(@thirdparty) do |f| %>
+  <% if @thirdparty.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@thirdparty.errors.count, "error") %> prohibited this thirdparty from being saved:</h2>
+
+      <ul>
+      <% @thirdparty.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :identifier %><br>
+    <%= f.text_field :identifier %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

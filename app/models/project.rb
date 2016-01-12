@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
 
   has_many :stars
   has_many :users, :through => :stars
+  has_many :users, :through => :comments
   belongs_to :user
 
   VALID_URL_REGEX = /http(s)?:\/\/([^\/]+)/

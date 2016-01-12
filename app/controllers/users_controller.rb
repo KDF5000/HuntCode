@@ -14,8 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @user_project = @user.projects(params[:id])
-    # render "users/show.html.erb"
+    render "users/show.html.erb"
   end
 
   # GET /users/new
@@ -34,14 +33,17 @@ class UsersController < ApplicationController
 
     # respond_to do |format|
     if @user.save
+      sign_in(@user)
       # format.html { redirect_to @user, notice: 'User was successfully created.' }
       # format.json { render :show, status: :created, location: @user }
       flash[:success] = "Welcome to Huntcode!"
-      redirect_to @user
+      print "-------------"
+      redirect_to "/"
     else
       # format.html { render :new }
       # format.json { render json: @user.errors, status: :unprocessable_entity }
-      render 'new'
+      print @user.errors.to_json
+      render 'users/loginReg.html'
     end
     # end
   end
