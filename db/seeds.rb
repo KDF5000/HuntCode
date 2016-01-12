@@ -22,6 +22,6 @@ end
 stars.each do |star|
   Star.create!(star)
 end
-# users.each do |user|
-#   User.create!(user)
-# end
+users.each do |user|
+  User.create!(user)
+end

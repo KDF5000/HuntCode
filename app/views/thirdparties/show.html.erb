@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Identifier:</strong>
+  <%= @thirdparty.identifier %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @thirdparty.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_thirdparty_path(@thirdparty) %> |
+<%= link_to 'Back', thirdparties_path %>

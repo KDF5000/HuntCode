@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112082853) do
+ActiveRecord::Schema.define(version: 20160112143543) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160112082853) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "thirdparty", force: :cascade do |t|
+  create_table "thirdparties", force: :cascade do |t|
     t.string   "identifier"
     t.integer  "user_id"
     t.integer  "type"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160112082853) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "thirdparty", ["user_id"], name: "index_thirdparty_on_user_id"
+  add_index "thirdparties", ["user_id"], name: "index_thirdparties_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "x_username"

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :projects
   has_many :stars
+  has_one :thirdparty
   has_many :projects, :through=> :stars
   has_many :projects, :through=> :comments
   before_save { self.x_email = x_email.downcase }
