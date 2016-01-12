@@ -158,6 +158,7 @@ li.user_ava_li{
 }
 .load_pre_date{
     clear: both;
+    margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
