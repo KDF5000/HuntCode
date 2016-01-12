@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :projects
-  resources :users
+  resources :users do
+    resources :projects
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/loginReg', to: 'sessions#loginReg', via: 'get'
