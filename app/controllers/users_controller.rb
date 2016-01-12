@@ -75,6 +75,7 @@ class UsersController < ApplicationController
 
 
   def github_login
+    require 'json'
     @code = params[:code]
     # 获取access_token
     uri = URI.parse("https://github.com/login/oauth/access_token")
@@ -86,8 +87,32 @@ class UsersController < ApplicationController
     access_token= access_token_arr[1]
     #获取用户信息
     uri = URI.parse('https://api.github.com/user?access_token='+access_token)
-    res = Net::HTTP.get(uri)
-    render :inline => res
+    response = Net::HTTP.get(uri)
+    res = JSON.parse response
+    @identifier = res['id']
+
+    if Thirdparty.exists?(identifier:@identifier)
+      @thirdParty = Thirdparty.find_by_identifier(@identifier)
+      begin
+        @user = User.find(@thirdParty.user_id)
+      rescue
+        puts "查找用户失败"
+        redirect_to loginReg_url
+      end
+    else
+      #创建一个用户
+      puts "创建一个用户"
+      @avatar_url = res['avatar_url']
+      @user_name = res['login']
+      @email = res['email']
+      @user = User.create(:x_username=>@user_name, :avatar=>@avatar_url, :x_email=>@email)
+
+      puts "user_id:",@user.x_username
+
+      @thirdParty = Thirdparty.create(:identifier=>@identifier, :user_id=>@user.id)
+    end
+
+    redirect_to root_url
   end
 
   private
