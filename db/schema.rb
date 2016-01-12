@@ -11,19 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112034118) do
+ActiveRecord::Schema.define(version: 20160112043303) do
 
   create_table "projects", force: :cascade do |t|
     t.string   "title"
     t.string   "intro_content"
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.string   "source_url"
     t.integer  "status"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "projects", ["users_id"], name: "index_projects_on_users_id"
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
 
   create_table "stars", force: :cascade do |t|
     t.integer  "user_id"
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(version: 20160112034118) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  add_index "stars", ["user_id"], name: "index_stars_on_user_id"
+
   add_index "stars", ["project_id"], name: "index_stars_on_project_id"
+  add_index "stars", ["user_id"], name: "index_stars_on_user_id"
 
   create_table "subscribes", force: :cascade do |t|
     t.string   "sub_email"
@@ -43,27 +44,25 @@ ActiveRecord::Schema.define(version: 20160112034118) do
 
   create_table "thirdparty", force: :cascade do |t|
     t.string   "identifier"
-    t.integer  "users_id"
+    t.integer  "user_id"
     t.integer  "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "thirdparty", ["users_id"], name: "index_thirdparty_on_users_id"
+  add_index "thirdparty", ["user_id"], name: "index_thirdparty_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "x_username"
     t.string   "x_email"
-    t.integer  "x_projects_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.boolean  "admin"
     t.string   "remember_token"
     t.string   "avatar"
-    t.boolean  "admin"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
-  add_index "users", ["x_projects_id"], name: "index_users_on_x_projects_id"
 
 end
