@@ -119,13 +119,23 @@ class UsersController < ApplicationController
   end
 
   def comments
-    @title = "Following"
+
     @user = User.find(params[:id])
     # print "canshushi",params
 
     # @users = @user..paginate(page: params[:page])
     @comments = Comment.find_by_user_id(@user.id)
     print "canshushi",@comments.to_json
+    render "show"
+  end
+
+  def stars
+    @user = User.find(params[:id])
+    # print "canshushi",params
+
+    # @users = @user..paginate(page: params[:page])
+    @stars = Star.find_by_user_id(@user)
+    print "canshushi",@stars.to_json
     render "show"
   end
 
