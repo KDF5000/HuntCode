@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   match '/signup',  to: 'users#new',via:'get'
   match '/signout', to: 'sessions#destroy',via:'delete'
 
+  match '/github/login', to:'users#github_login', via: 'get'
+
   # Example resource route with options:
   #   resources :products do
   #     member do

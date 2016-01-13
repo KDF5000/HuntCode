@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     render :inline => @users.to_json
-
   end
 
   # GET /users/1
@@ -37,7 +36,6 @@ class UsersController < ApplicationController
       # format.html { redirect_to @user, notice: 'User was successfully created.' }
       # format.json { render :show, status: :created, location: @user }
       flash[:success] = "Welcome to Huntcode!"
-      print "-------------"
       redirect_to "/"
     else
       # format.html { render :new }
@@ -95,6 +93,6 @@ class UsersController < ApplicationController
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(root_url) unless not current_user.nil? and current_user.admin?
     end
 end
