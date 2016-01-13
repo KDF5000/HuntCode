@@ -60,60 +60,23 @@
                     <div class="clear"></div>
                     <div class="split-line"></div>
                     <ul id="comment-data">
-
+                        <% @comments.each do |comment|%>
                         <li class="comment-item">
                             <img src="/images/logo.png" class="avatar img-circle fl">
                             <div class="comment-info">
                                 <div class="comment-info-head">
-                                    <span class="commenter-name">小王子</span>
+                                    <span class="commenter-name"><%= comment.user.x_username %></span>
                                     <span class="commenter-title">&nbsp;&nbsp;软件工程师</span>
-                                    <span class="comment-time">８小时前</span>
+                                    <span class="comment-time"><%= comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></span>
                                 </div>
 
                                 <div class="comment-content">
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
+                                  <%= comment.content %>
                                 </div>
                             </div>
                             <div class="clear"></div>
                         </li>
-                        <li class="comment-item">
-                            <img src="/images/logo.png" class="avatar img-circle fl">
-                            <div class="comment-info">
-                                <div class="comment-info-head">
-                                    <span class="commenter-name">小王子</span>
-                                    <span class="commenter-title">&nbsp;&nbsp;软件工程师</span>
-                                    <span class="comment-time">８小时前</span>
-                                </div>
-
-                                <div class="comment-content">
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </li>
-                        <li class="comment-item">
-                            <img src="/images/logo.png" class="avatar img-circle fl">
-                            <div class="comment-info">
-                                <div class="comment-info-head">
-                                    <span class="commenter-name">小王子</span>
-                                    <span class="commenter-title">&nbsp;&nbsp;软件工程师</span>
-                                    <span class="comment-time">８小时前</span>
-                                </div>
-
-                                <div class="comment-content">
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                    这个项目很不错，是一个国外大牛写的，代码质量很高，功能很强大，文档写的页很棒！！！！
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </li>
+                        <% end %>
                     </ul>
                 </div>
             </div>
