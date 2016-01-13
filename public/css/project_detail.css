@@ -47,7 +47,7 @@
 .svg-weibo{
     background: url("../images/weibo.png") no-repeat scroll left top transparent;
 }
-.dropdown {
+.dropdown-share {
     background-clip: padding-box;
     background-color: #FFF;
     border: 2px solid #DDD;
@@ -69,7 +69,7 @@
 .share .share-dropdown {
     width: 180px;
 }
-.share-wechat:hover .dropdown{
+.share-wechat:hover .dropdown-share{
     opacity:1;
     top:150px;
     visibility:visible
