@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
 
   resources :thirdparties
-  resources :comments
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -24,12 +23,9 @@ Rails.application.routes.draw do
       get :comments
     end
   end
-  resources :projects
 
   resources :projects do
-    member do
-      get :comments
-    end
+    resources :comments
   end
 
   resources :users
