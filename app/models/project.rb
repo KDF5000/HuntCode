@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
     # validates :name, length: { maximun: 127 }, presence: true
 
   has_many :stars
+  has_many :comments
   has_many :users, :through => :stars
   has_many :users, :through => :comments
   belongs_to :user
