@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :comments
+    resource :stars
   end
 
   resources :users

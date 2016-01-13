@@ -48,4 +48,30 @@ $(function(){
         var date = $(this).attr('data-date');
         loadmore(date);
     })
+    // 点赞
+    $('.up_bt').click(function(event){
+        var projectId = $(this).attr('data-pid');
+        var upNumDom =  $(this).find('span.up_num');
+        var currNum = $(this).find('span.up_num').text();
+        //$(this).find('span.up_num').text(parseInt(currNum)+1);
+        $.ajax({
+            url: "/projects/"+projectId+"/stars/",
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var status = data.status;
+                if (status != 100) {
+                    //alert(data.msg);
+                    return;
+                }
+                upNumDom.text(parseInt(currNum)+1)
+            },
+            error: function (error) {
+                alert('error');
+                //$.each(eval("("+error+")"), function(index, el) {
+                //    alert(el);
+                //});
+            }
+        });
+    });
 });
