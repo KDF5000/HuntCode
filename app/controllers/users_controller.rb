@@ -117,6 +117,18 @@ class UsersController < ApplicationController
 
     redirect_to root_url
   end
+
+  def comments
+    @title = "Following"
+    @user = User.find(params[:id])
+    # print "canshushi",params
+
+    # @users = @user..paginate(page: params[:page])
+    @comments = Comment.find_by_user_id(@user.id)
+    print "canshushi",@comments.to_json
+    render "show"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
