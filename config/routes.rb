@@ -20,7 +20,8 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :comments
+      get :comments,:stars
+
     end
   end
 
