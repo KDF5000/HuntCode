@@ -234,3 +234,12 @@ li.user_ava_li{
     text-align: center;
     line-height: 12px;
 }
+.lang-label-bg{
+    font-size: 10px;
+    position: absolute;
+    margin-top: 6px;
+    margin-left: 5px;
+    height: 18px;
+    text-align: center;
+    line-height: 14px;
+}
