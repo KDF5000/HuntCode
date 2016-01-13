@@ -74,6 +74,7 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def github_login
     require 'json'
     @code = params[:code]
@@ -90,24 +91,30 @@ class UsersController < ApplicationController
     response = Net::HTTP.get(uri)
     res = JSON.parse response
     @identifier = res['id']
+
     if Thirdparty.exists?(identifier:@identifier)
       @thirdParty = Thirdparty.find_by_identifier(@identifier)
+      print @thirdParty.to_json
       begin
         @user = User.find(@thirdParty.user_id)
+        sign_in @user
       rescue
         puts "查找用户失败"
         redirect_to loginReg_url
       end
     else
-    #创建一个用户
+      #创建一个用户
       puts "创建一个用户"
       @avatar_url = res['avatar_url']
       @user_name = res['login']
       @email = res['email']
-      @user = User.create(:x_username=>@user_name, :avatar=>@avatar_url, :x_email=>@email)
-      puts "user_id:",@user.x_username
+      @user = User.create(:x_username=>@user_name, :avatar=>@avatar_url, :x_email=>@email,:password=>"123456",
+      :password_confirmation=>"123456")
+
       @thirdParty = Thirdparty.create(:identifier=>@identifier, :user_id=>@user.id)
+      sign_in @user
     end
+
     redirect_to root_url
   end
   private

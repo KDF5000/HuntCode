@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
   match '/github/login', to:'users#github_login', via: 'get'
 
+  match '/get_projects', to:'projects#get_projects_by_time', via: 'get'
+
   # Example resource route with options:
   #   resources :products do
   #     member do
