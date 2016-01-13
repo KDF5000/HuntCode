@@ -36,8 +36,7 @@
 
 </div>
 <div class="container">
-  <ul id="project-list">
-    <script id="projectListTmp" type="text/x-jsrender">
+  <script id="projectListTmp" type="text/x-jsrender">
             <li>
                 <div class="date-time">
                     <div class="square-content">
@@ -60,7 +59,8 @@
                                     <span class="up_num ">{{:star_num}}</span>
                                 </button>
                                 <div class="project-des fl">
-                                    <h4><a href="{{:source_url}}">{{:project.title}}</a></h4>
+
+                          <h4><a href="/projects/{{:project.id}}">{{:project.title}}<span class="lang-label label label-info">{{:project.language}}</span></a></h4>
                                     <p>{{:project.intro_content}}</p>
                                 </div>
                                 <div class="up_user_list fr">
@@ -87,72 +87,86 @@
                 </div>
             </li>
     </script>
+    <script id="projectListTmp2" type="text/x-jsrender">
     <li>
-      <div class="date-time">
-        <div class="square-content">
-          <span class="square"></span>
-          <span class="trigngle-icon"></span>
-        </div>
-        <div class="v-line"></div>
-        <div class=" square-content rotate45">
-          <span class="square"></span>
-          <span class="time rotate-45">DEC 12</span>
-        </div>
-      </div>
-      <div class="projects-wapper">
-        <ul id="day-project-list" class="project-list list-unstyled">
-
-          <% @projects.each do |project| %>
-          <li class="data-li">
-            <button class="btn fl up_bt" data-pid="<%= project.id %>">
-              <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-              <!-- TODO 点赞 -->
-              <span class="up_num ">12</span>
-            </button>
-            <!-- TODO 项目 -->
-            <div class="project-des fl">
-              <h4><a href="/projects/<%= project.id %>"><%= project.title %><span class="lang-label label label-info"><%= project.language %></span></a></h4>
-              <p><%= project.intro_content[0,65] %></p>
+        <div class="date-time">
+            <div class="square-content">
+                <span class="square"></span>
+                <span class="trigngle-icon"></span>
             </div>
-            <div class="up_user_list fr">
-              <ul class="nav nav-pills">
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                </li>
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                  <div class="project-comment">
-                    <!-- TODO 评论 -->
-                    <a class="project-comments">2</a>
-                  </div>
-                </li>
-              </ul>
+            <div class="v-line"></div>
+            <div class=" square-content rotate45">
+                <span class="square"></span>
+                <span class="time rotate-45">{{:date}}</span>
             </div>
-          </li>
-          <% end %>
-
-        </ul>
-      </div>
+        </div>
+        <div class="projects-wapper">
+            <ul id="day-project-list" class="project-list list-unstyled">
+                {{for data}}
+                    <li class="data-li">
+                        <button class="btn fl up_bt">
+                            <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
+                            <span class="up_num ">{{:star_num}}</span>
+                        </button>
+                        <div class="project-des fl">
+                          <h4><a href="/projects/{{:project.id}}">{{:project.title}}<span class="lang-label label label-info">{{:project.language}}</span></a></h4>
+<p>{{:project.intro_content.substring(0, 65)}}</p>
+                        </div>
+                        <div class="up_user_list fr">
+                            <ul class="nav nav-pills">
+                                {{for #data.star_users ~starNum=#data.star_num}}
+                                    {{if #index+1 === #parent.parent.data.star_users.length}}
+                                        <li class="user_ava_li">
+                                            <img class="img-responsive user-avatar" src="/images/logo.png"></img>
+                                            <div class="project-comment">
+                                                <a class="project-comments">{{:~starNum}}</a>
+                                            </div>
+                                        </li>
+                                    {{else}}
+                                        <li class="user_ava_li">
+                                            <img class="img-responsive user-avatar" src="/images/logo.png"></img>
+                                        </li>
+                                    {{/if}}
+                                {{/for}}
+                            </ul>
+                        </div>
+                    </li>
+                {{/for}}
+            </ul>
+        </div>
     </li>
+    </script>
+  <ul id="project-list">
   </ul>
   <!-- 展开剩余日期-->
   <div class="load_pre_date">
     <h3 class="main-color">展开剩余日期</h3>
-    <a href="javascript:void(0)" data-date="2016-01-13" id="load-more-project"class="load_pre_date_icon"></a>
+    <a href="javascript:void(0);" data-date="2016-01-13" id="load-more-project"class="load_pre_date_icon"></a>
   </div>
 </div>
 
 <% content_for :tail do %>
 <script type="text/javascript">
+var project_dates = <%= raw @project_dates %>;
+var current_date_index = 0;
 function ajax_data (startdate){
   $.ajax({
-      url: 'http://localhost:3000/get_projects?startdate='+ startdate,
-      dataType: 'json',
-      success: function (data) {
-        
-      }
+    url: '/projects/date/'+ startdate,
+    dataType: 'json',
+    success: function (data) {
+      var template = $.templates("#projectListTmp2");  
+      var htmlOutput = template.render(data);  
+      var orignal = $("#project-list")[0].innerHTML;
+      $("#project-list").html(orignal + htmlOutput);
+      current_date_index = current_date_index + 1;
+      $("#load-more-project")[0].dataset.date = project_dates[current_date_index];
+    }
   });
 };
+ajax_data(project_dates[0]);
+ajax_data(project_dates[1]);
 </script>
 <% end %>
+
+
 
