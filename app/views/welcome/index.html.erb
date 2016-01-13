@@ -211,8 +211,8 @@
             </button>
             <!-- TODO 项目 -->
             <div class="project-des fl">
-              <h4><a href="/projects/<%= project.id %>"><%= project.title %></a></h4>
-              <p><%= project.intro_content %></p>
+              <h4><a href="/projects/<%= project.id %>"><%= project.title %><span class="lang-label label label-info"><%= project.language %></span></a></h4>
+              <p><%= project.intro_content[0,65] %></p>
             </div>
             <div class="up_user_list fr">
               <ul class="nav nav-pills">

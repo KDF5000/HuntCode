@@ -125,6 +125,10 @@ a:hover{
 }
 .project-des{
     margin-left: 8px;
+    width: 80%;
+}
+.project-des p{
+    margin-top: 5px;
 }
 .up_user_list{
     margin-top: 15px;
@@ -220,4 +224,13 @@ li.user_ava_li{
 #dropdown-menu{
     right: -60px;
     top: 30px;
+}
+.lang-label{
+    font-size: 8px;
+    position: absolute;
+    margin-top: 4px;
+    margin-left: 5px;
+    height: 15px;
+    text-align: center;
+    line-height: 12px;
 }
