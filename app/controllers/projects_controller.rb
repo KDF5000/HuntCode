@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @new_project = Project.new
+    @project = Project.new
   end
 
   # GET /projects/1/edit
@@ -28,8 +28,14 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    #@project = Project.new(project_params)
-    @project = current_user.projects.build(project_params)
+    # 判断用户是否登录，是否合法用户
+    user = get_user
+    if user.nil?
+      redirect_to 'new' # TODO 非合法用户
+    end
+    @project = Project.new(project_params)
+    # @project = current_user.projects.build(project_params)
+    @project.user_id=current_user.id
     #respond_to do |format|
     if @project.save
       #format.html { redirect_to @project, notice: 'Project was successfully created.' }
