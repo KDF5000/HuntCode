@@ -13,6 +13,20 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    puts @user.to_json
+    # print "canshushi",params
+
+    # @users = @user..paginate(page: params[:page])
+    # @stars = Star.find_by_user_id(@user)
+    #点过赞的
+    @stars = @user.stars.select(:project_id).distinct
+    # 分享的项目
+    @shared_projects = @user.projects.all.distinct
+    puts @shared_projects.to_json
+    #评论过的项目
+    @user_comments = @user.comments.select(:project_id).distinct
+
+    print "canshushi",@stars.to_json
     render "users/show.html.erb"
   end
 

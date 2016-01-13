@@ -25,7 +25,7 @@ $(function(){
                 var date_time = data.date
                 var data_list = data.data;
                 if(data_list.length ==0){
-                    alert("没有更多数据了");
+                    //alert("没有更多数据了");
                     $('.load_pre_date').find('h3').text('没有更多数据了');
                     $("#load-more-project").unbind(); //不能点击
                     return;

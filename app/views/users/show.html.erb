@@ -14,16 +14,16 @@
                     <%= @user.x_username %>
                     <a class="edit" href="#"></a>
                 </h2>
-                <p class="user-subtitle">HUST-学生</p>
-                <p class="user-bio">瞎折腾的程序猿</p>
+                <p class="user-subtitle"><%= @user.job%></p>
+                <p class="user-bio"><%= @user.intro %></p>
             </div>
             <div class="user-follow">
                 <a href="#" class="follow-following">
-                    <div class="follow-number">12</div>
+                    <div class="follow-number">0</div>
                     <div class="follow-label">关注</div>
                 </a>
                 <a href="#"  class="follow-follower">
-                    <div class="follow-number">12</div>
+                    <div class="follow-number">0</div>
                     <div class="follow-label">粉丝</div>
                 </a>
             </div>
@@ -42,14 +42,15 @@
     <div id="nav-content">
         <div id="stared-pro-panel"  style="display: block">
             <ul class="project-list list-unstyled">
+              <% @stars.each do |star| %>
                 <li class="data-li">
                     <button class="btn fl up_bt">
                         <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
+                        <span class="up_num "><%=star.project.stars.count%></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
+                        <h4><a href="/projects/<%= star.project.id %>"><%= star.project.title %></a></h4>
+                        <p><%= star.project.intro_content[0,65] %></p>
                     </div>
                     <div class="up_user_list fr">
                         <ul class="nav nav-pills">
@@ -68,19 +69,21 @@
                         </ul>
                     </div>
                 </li>
+              <% end %>
             </ul>
         </div>
 
         <div id="shared-pro-panel"  style="display: none">
             <ul class="project-list list-unstyled">
+              <% @shared_projects.each do |project|%>
                 <li class="data-li">
                     <button class="btn fl up_bt">
                         <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
+                        <span class="up_num "><%= project.stars.count %></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
+                        <h4><a href="/projects/<%= project.id %>"><%= project.title %></a></h4>
+                        <p><%= project.intro_content %></p>
                     </div>
                     <div class="up_user_list fr">
                         <ul class="nav nav-pills">
@@ -96,115 +99,21 @@
                         </ul>
                     </div>
                 </li>
-                <li class="data-li">
-                    <button class="btn fl up_bt">
-                        <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
-                    </button>
-                    <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-                    </div>
-                    <div class="up_user_list fr">
-                        <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">1</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="data-li">
-                    <button class="btn fl up_bt">
-                        <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
-                    </button>
-                    <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-                    </div>
-                    <div class="up_user_list fr">
-                        <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">11</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="data-li">
-                    <button class="btn fl up_bt">
-                        <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
-                    </button>
-                    <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-                    </div>
-                    <div class="up_user_list fr">
-                        <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">23</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="data-li">
-                    <button class="btn fl up_bt">
-                        <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
-                    </button>
-                    <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-                    </div>
-                    <div class="up_user_list fr">
-                        <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">7</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+            <% end %>
             </ul>
         </div>
 
         <div id="commented-pro-panel"  style="display: none">
             <ul class="project-list list-unstyled">
+              <% @user_comments.each do |comment| %>
                 <li class="data-li">
                     <button class="btn fl up_bt">
                         <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
+                        <span class="up_num "><%= comment.project.stars.count %></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
+                        <h4><a href="/projects/<%= comment.project.id %>"><%= comment.project.title %></a></h4>
+                        <p><%= comment.project.intro_content %></p>
                     </div>
                     <div class="up_user_list fr">
                         <ul class="nav nav-pills">
@@ -220,102 +129,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="data-li">
-                    <button class="btn fl up_bt">
-                        <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
-                    </button>
-                    <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-                    </div>
-                    <div class="up_user_list fr">
-                        <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">1</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="data-li">
-                    <button class="btn fl up_bt">
-                        <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
-                    </button>
-                    <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-                    </div>
-                    <div class="up_user_list fr">
-                        <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">11</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="data-li">
-                    <button class="btn fl up_bt">
-                        <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
-                    </button>
-                    <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-                    </div>
-                    <div class="up_user_list fr">
-                        <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">23</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="data-li">
-                    <button class="btn fl up_bt">
-                        <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num ">12</span>
-                    </button>
-                    <div class="project-des fl">
-                        <h4><a href="#">大数据框架Spark</a></h4>
-                        <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-                    </div>
-                    <div class="up_user_list fr">
-                        <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">7</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+            <% end %>
             </ul>
         </div>
 
@@ -323,23 +137,27 @@
             <!-- 修改个人信息-->
             <div id="user-info-edit" >
                 <span class="form-tips">修改个人信息</span>
+              <!--<%= form_for(:comment, url: project_comments_path(@project.id)) do |f| %>-->
+                  <!--<%= f.text_area :content, class: "form-control", placeholder: "看帖不留言，必得肩周炎~", style: "resize: none", rows: "4" %>-->
+                  <!--<%= f.submit "提交评论", class: "btn btn-primary post-comment" %>-->
+              <!--<% end %>-->
                 <form>
                     <div class="form-group row col-md-8">
                         <label for="user-nickname">昵称</label>
-                        <input  type="email" class="form-control" id="user-nickname" placeholder="昵称">
+                        <input  type="email" class="form-control" id="user-nickname" placeholder="<%=@user.x_username %>" value="<%=@user.x_username %>">
                     </div>
                     <div class="form-group row col-md-8">
                         <label for="user-avatar">头像</label>
-                        <img src="/images/logo.png" class="edit-avatar">
+                        <img src="<%=@user.avatar %>" class="edit-avatar">
                         <input type="file" id="user-avatar" >
                     </div>
                     <div class="form-group row col-md-8">
                         <label for="user-intro">简介</label>
-                        <textarea rows="3"  class="form-control" id="user-intro" placeholder="简介"></textarea>
+                        <textarea rows="3"  class="form-control" id="user-intro" placeholder="<%=@user.intro%>" value="<%= @user.intro%>"></textarea>
                     </div>
                     <div class="form-group row col-md-8">
                         <label for="user-job">职业</label>
-                        <input type="text" class="form-control" id="user-job" placeholder="职业">
+                        <input type="text" class="form-control" id="user-job" placeholder="<%=@user.job%>" value="<%=@user.job%>">
                     </div>
                     <div class="form-group row col-md-8">
                         <button type="submit" class="btn btn-primary">保存资料</button>
