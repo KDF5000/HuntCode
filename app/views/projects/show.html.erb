@@ -23,6 +23,8 @@
 </head>
 
 <body>
+
+<% if @user %>
 <!-- Create Project Modal -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -64,6 +66,7 @@
     </div>
   </div>
 </div>
+<% end %>
 
 <div class="container">
     <div class='head row'>

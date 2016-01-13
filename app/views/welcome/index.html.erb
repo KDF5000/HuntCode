@@ -24,6 +24,7 @@
 </head>
 
 <body>
+<% if @user %>
 <!-- Create Project Modal -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -65,6 +66,8 @@
     </div>
   </div>
 </div>
+<% end %>
+
 <div class="container">
   <div class='head row'>
     <div class="col-md-4">
@@ -97,7 +100,7 @@
 
       </ul>
       <!--<a class='' href='#'>登录/注册</a>-->
-      <span><a href="javascript:void(0)" data-toggle="modal" data-target="#createProject">&emsp;&emsp;新建项目</a></span>
+      <span><a href="" data-toggle="modal" data-target="#createProject">&emsp;&emsp;新建项目</a></span>
 
       <% else %>
       <a class='' href='/loginReg'>登录/注册</a>
