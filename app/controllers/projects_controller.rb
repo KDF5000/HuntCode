@@ -49,6 +49,9 @@ class ProjectsController < ApplicationController
     @user = get_user
     @project = Project.find(params[:id])
     @comments = @project.comments.all
+    @stars = @project.stars.all
+    @sim_projects = Project.where("language=:lang and id != :id",{:lang=>@project.language, :id=>@project.id}).take(6)
+    puts @sim_projects.to_json
     puts @comments.to_json
   end
 

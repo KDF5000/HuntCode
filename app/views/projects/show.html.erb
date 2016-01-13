@@ -12,9 +12,9 @@
         <div class="project-detail row">
             <div class="project-left col-lg-9">
                 <div>
-                    <img src="/images/logo.png" class="avatar img-circle fl">
+                    <img src="<%= @user.avatar %>" class="avatar img-circle fl">
                     <div class="project-detail-des fl">
-                        <h3><a href="#"><%= @project.title %><span class="lang-label-bg label label-info"><%= @project.language %></span></a></h3>
+                        <h3><a href="javascript:void(0)"><%= @project.title %><span class="lang-label-bg label label-info"><%= @project.language %></span></a></h3>
                         <span class="project-content">
                         <%= @project.intro_content %>
                         <!--<p>创建者id:<%= @project.user_id %></p>-->
@@ -50,7 +50,7 @@
 
                 <div id="comments">
                     <!-- TODO 评论 -->
-                    <span class="comment-tips">评论(10)</span>
+                    <span class="comment-tips">评论(<%=@comments.count%>)</span>
                     <div id="comment-form">
                        <%= form_for(:comment, url: project_comments_path(@project.id)) do |f| %>
                           <%= f.text_area :content, class: "form-control", placeholder: "看帖不留言，必得肩周炎~", style: "resize: none", rows: "4" %>
@@ -60,51 +60,55 @@
                     <div class="clear"></div>
                     <div class="split-line"></div>
                     <ul id="comment-data">
-                        <% @comments.each do |comment|%>
-                        <li class="comment-item">
-                            <img src="/images/logo.png" class="avatar img-circle fl">
-                            <div class="comment-info">
-                                <div class="comment-info-head">
+                        <% if @comments.count == 0 %>
+                           <div style="margin: auto;text-align: center; font-size: 16px">还没有人评论(⊙o⊙)…</div>
+                        <% else %>
+                          <% @comments.each do |comment|%>
+                              <li class="comment-item">
+                                <img src="<%=comment.user.avatar %>" class="avatar img-circle fl">
+                                <div class="comment-info">
+                                  <div class="comment-info-head">
                                     <span class="commenter-name"><%= comment.user.x_username %></span>
-                                    <span class="commenter-title">&nbsp;&nbsp;软件工程师</span>
+                                    <span class="commenter-title">&nbsp;&nbsp;<%=comment.user.job %></span>
                                     <span class="comment-time"><%= comment.updated_at.localtime.strftime("%Y-%m-%d %H:%M:%S") %></span>
-                                </div>
+                                  </div>
 
-                                <div class="comment-content">
-                                  <%= comment.content %>
+                                  <div class="comment-content">
+                                    <%= comment.content %>
+                                  </div>
                                 </div>
-                            </div>
-                            <div class="clear"></div>
-                        </li>
+                                <div class="clear"></div>
+                              </li>
+                          <% end %>
                         <% end %>
+
                     </ul>
                 </div>
             </div>
             <div class="project-right col-lg-3">
                 <div>
-                    <span class="project-title-tips"><span>12</span>人点赞</span>
+                    <strong class="project-title-tips"><span><%=@stars.count%></span>人点赞</strong>
                     <ul class="star-users list-inline">
-                        <li><img src="/images/logo.png" class="avatar img-circle"></li>
-                        <li><img src="/images/logo.png" class="avatar img-circle"></li>
-                        <li><img src="/images/logo.png" class="avatar img-circle"></li>
-                        <li><img src="/images/logo.png" class="avatar img-circle"></li>
-                        <li><img src="/images/logo.png" class="avatar img-circle"></li>
-                        <li><img src="/images/logo.png" class="avatar img-circle"></li>
-                        <li><img src="/images/logo.png" class="avatar img-circle"></li>
-                        <li><img src="/images/logo.png" class="avatar img-circle"></li>
+                        <% if @stars.count == 0 %>
+                            还没有人点赞额~
+                        <% else %>
+                          <% @stars.each do |star| %>
+                              <li><img src="<%= star.user.avatar %>" class="avatar img-circle"></li>
+                          <% end %>
+                        <% end %>
+
                     </ul>
                 </div>
                 <div class="sim-project">
-                    <span class="project-title-tips">相似项目</span>
-                    <ul class="star-users list-inline">
-                        <li><a href="#">机器学习框架Spark</a></li>
-                        <li><a href="#">机器学习框架Spark</a></li>
-                        <li><a href="#">机器学习框架Spark</a></li>
-                        <li><a href="#">机器学习框架Spark</a></li>
-                        <li><a href="#">机器学习框架Spark</a></li>
-                        <li><a href="#">机器学习框架Spark</a></li>
-                        <li><a href="#">机器学习框架Spark</a></li>
-                        <li><a href="#">机器学习框架Spark</a></li>
+                    <strong class="project-title-tips">相似项目</strong>
+                    <ul class="star-users">
+                          <% if @sim_projects.count == 0 %>
+                              还没有发现相似的项目~
+                          <% else %>
+                            <% @sim_projects.each do |project|%>
+                               <li><a href="/projects/<%= project.id %>"><%= project.title %></a></li>
+                            <% end %>
+                          <% end %>
                     </ul>
                 </div>
             </div>
