@@ -145,7 +145,7 @@
 <script type="text/javascript">
 function ajax_data (startdate){
   $.ajax({
-      url: 'http://localhost:3000/get_projects?startdate='+ startdate,
+      url: 'http://localhost:3000/get_projects?enddate='+ startdate,
       dataType: 'json',
       success: function (data) {
         
