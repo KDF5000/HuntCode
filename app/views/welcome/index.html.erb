@@ -2,6 +2,7 @@
     <link href="/css/BigSlide.css" type="text/css" rel="stylesheet">
     <script src="/js/BigSlide.js" type="text/javascript"></script>
     <link href="/css/modal.css" type="text/css" rel="stylesheet">
+    <script src="/js/index.js" type="text/javascript"></script>
 <% end %>
 
 <body>
@@ -102,7 +103,7 @@
 
           <% @projects.each do |project| %>
           <li class="data-li">
-            <button class="btn fl up_bt">
+            <button class="btn fl up_bt" data-pid="<%= project.id %>">
               <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
               <!-- TODO 点赞 -->
               <span class="up_num ">12</span>

@@ -23,18 +23,27 @@ class StarsController < ApplicationController
 
   # POST /stars
   # POST /stars.json
+  # POST /project/:project_id/stars/
   def create
-    @star = Star.new(star_params)
-
-    respond_to do |format|
-      if @star.save
-        format.html { redirect_to @star, notice: 'Star was successfully created.' }
-        format.json { render :show, status: :created, location: @star }
-      else
-        format.html { render :new }
-        format.json { render json: @star.errors, status: :unprocessable_entity }
-      end
+    @project = Project.find_by_id(params[:project_id])
+    puts @project
+    if self.current_user.nil?
+      flash[:notice] = '请先登录！'
+      render :json=>{:status=>102, :msg=>"请先登录!"}.to_json
+      return
     end
+
+    @star = @project.stars.new
+    @star.user_id = self.current_user.id
+
+    if @star.save
+      flash[:notice] = 'Star successfully created.'
+      puts 'Star successfully created.'
+    else
+      flash[:notice] = '点赞失败!'
+      render :json=>{:status=>102, :msg=>"点赞失败!"}.to_json
+    end
+    render :json=>{:status=>100, :msg=>"点赞成功!"}.to_json
   end
 
   # PATCH/PUT /stars/1

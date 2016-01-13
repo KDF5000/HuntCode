@@ -25,6 +25,8 @@ class ProjectsController < ApplicationController
   def show
     @user = get_user
     @project = Project.find(params[:id])
+    @comments = @project.comments.all
+    puts @comments.to_json
   end
 
   # GET /projects/new
