@@ -42,30 +42,32 @@
     <div id="nav-content">
         <div id="stared-pro-panel"  style="display: block">
             <ul class="project-list list-unstyled">
-              <% @stars.each do |star| %>
+              <% @stared_projects.each do |star_project| %>
                 <li class="data-li">
                     <button class="btn fl up_bt">
                         <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num "><%=star.project.stars.count%></span>
+                        <span class="up_num "><%=star_project['stars_num']%></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="/projects/<%= star.project.id %>"><%= star.project.title %></a></h4>
-                        <p><%= star.project.intro_content[0,65] %></p>
+                        <h4><a href="/projects/<%= star_project['project']['id'] %>"><%= star_project['project']['title'] %></a></h4>
+                        <p><%= star_project['project']['intro_content'][0,65] %></p>
                     </div>
                     <div class="up_user_list fr">
                         <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">7</a>
-                                </div>
-                            </li>
+                          <% index = 0 ;star_project['star_users'].each do |user| %>
+                              <% index+= 1; if index == star_project['star_users'].length %>
+                                  <li class="user_ava_li">
+                                    <img class="img-responsive user-avatar" src="<%= user['user_avatar']%>"></img>
+                                    <div class="project-comment">
+                                      <a class="project-comments"><%=star_project['stars_num'] %></a>
+                                    </div>
+                                  </li>
+                              <%else%>
+                                  <li class="user_ava_li">
+                                    <img class="img-responsive user-avatar" src="<%=user['user_avatar']%>"></img>
+                                  </li>
+                              <% end%>
+                          <% end %>
                         </ul>
                     </div>
                 </li>
@@ -79,23 +81,28 @@
                 <li class="data-li">
                     <button class="btn fl up_bt">
                         <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num "><%= project.stars.count %></span>
+                        <span class="up_num "><%= project['stars_num'] %></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="/projects/<%= project.id %>"><%= project.title %></a></h4>
-                        <p><%= project.intro_content %></p>
+                        <h4><a href="/projects/<%= project['project']['id'] %>"><%= project['project']['title'] %></a></h4>
+                        <p><%= project['project']['intro_content'][0,65] %></p>
                     </div>
                     <div class="up_user_list fr">
                         <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">2</a>
-                                </div>
-                            </li>
+                          <% index = 0 ;project['star_users'].each do |user| %>
+                              <% index+= 1; if index == project['star_users'].length %>
+                                  <li class="user_ava_li">
+                                    <img class="img-responsive user-avatar" src="<%=user['user_avatar']%>"></img>
+                                    <div class="project-comment">
+                                      <a class="project-comments"><%=project['stars_num'] %>></a>
+                                    </div>
+                                  </li>
+                              <%else%>
+                                  <li class="user_ava_li">
+                                    <img class="img-responsive user-avatar" src="<%=user['user_avatar']%>"></img>
+                                  </li>
+                              <% end%>
+                          <% end %>
                         </ul>
                     </div>
                 </li>
@@ -105,27 +112,32 @@
 
         <div id="commented-pro-panel"  style="display: none">
             <ul class="project-list list-unstyled">
-              <% @user_comments.each do |comment| %>
+              <% @commented_projects.each do |comment_project| %>
                 <li class="data-li">
                     <button class="btn fl up_bt">
                         <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-                        <span class="up_num "><%= comment.project.stars.count %></span>
+                        <span class="up_num "><%= comment_project['project']['stars_num'] %></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="/projects/<%= comment.project.id %>"><%= comment.project.title %></a></h4>
-                        <p><%= comment.project.intro_content %></p>
+                        <h4><a href="/projects/<%= comment_project['project']['id'] %>"><%= comment_project['project']['title'] %></a></h4>
+                        <p><%= comment_project['project']['intro_content'][0,65] %></p>
                     </div>
                     <div class="up_user_list fr">
                         <ul class="nav nav-pills">
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                            </li>
-                            <li class="user_ava_li">
-                                <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                                <div class="project-comment">
-                                    <a class="project-comments">2</a>
-                                </div>
-                            </li>
+                          <% index = 0 ;comment_project['star_users'].each do |user| %>
+                              <% index+= 1; if index == comment_project['star_users'].length %>
+                                  <li class="user_ava_li">
+                                    <img class="img-responsive user-avatar" src="<%=user['user_avatar']%>"></img>
+                                    <div class="project-comment">
+                                      <a class="project-comments"><%=comment_project['stars_num'] %>></a>
+                                    </div>
+                                  </li>
+                              <%else%>
+                                  <li class="user_ava_li">
+                                    <img class="img-responsive user-avatar" src="<%=user['user_avatar']%>"></img>
+                                  </li>
+                              <% end%>
+                          <% end %>
                         </ul>
                     </div>
                 </li>
@@ -137,10 +149,6 @@
             <!-- 修改个人信息-->
             <div id="user-info-edit" >
                 <span class="form-tips">修改个人信息</span>
-              <!--<%= form_for(:comment, url: project_comments_path(@project.id)) do |f| %>-->
-                  <!--<%= f.text_area :content, class: "form-control", placeholder: "看帖不留言，必得肩周炎~", style: "resize: none", rows: "4" %>-->
-                  <!--<%= f.submit "提交评论", class: "btn btn-primary post-comment" %>-->
-              <!--<% end %>-->
                 <form>
                     <div class="form-group row col-md-8">
                         <label for="user-nickname">昵称</label>

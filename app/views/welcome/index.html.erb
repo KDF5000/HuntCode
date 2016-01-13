@@ -68,14 +68,14 @@
                                         {{for #data.star_users ~starNum=#data.star_num}}
                                             {{if #index+1 === #parent.parent.data.star_users.length}}
                                                 <li class="user_ava_li">
-                                                    <img class="img-responsive user-avatar" src="logo.png"></img>
+                                                    <img class="img-responsive user-avatar" src="{{:user_avatar}}"></img>
                                                     <div class="project-comment">
                                                         <a class="project-comments">{{:~starNum}}</a>
                                                     </div>
                                                 </li>
                                             {{else}}
                                                 <li class="user_ava_li">
-                                                    <img class="img-responsive user-avatar" src="logo.png"></img>
+                                                    <img class="img-responsive user-avatar" src="{{:user_avatar}}"></img>
                                                 </li>
                                             {{/if}}
                                         {{/for}}

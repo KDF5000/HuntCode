@@ -19,14 +19,15 @@ class UsersController < ApplicationController
     # @users = @user..paginate(page: params[:page])
     # @stars = Star.find_by_user_id(@user)
     #点过赞的
-    @stars = @user.stars.select(:project_id).distinct
-    # 分享的项目
-    @shared_projects = @user.projects.all.distinct
-    puts @shared_projects.to_json
-    #评论过的项目
-    @user_comments = @user.comments.select(:project_id).distinct
 
-    print "canshushi",@stars.to_json
+    @stared_projects = get_stared_projects
+    @shared_projects = get_shared_projects
+    @commented_projects = get_commented_projects
+
+    puts @stared_projects.to_json
+    puts @shared_projects.to_json
+    puts @commented_projects.to_json
+
     render "users/show.html.erb"
   end
 
@@ -174,5 +175,56 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_url) unless not current_user.nil? and current_user.admin?
+    end
+
+    # 获取用户点赞过的项目
+    def get_stared_projects
+      @stars = @user.stars.select(:project_id).distinct
+      project_list = Array.new
+      @stars.each do |star|
+        project = star.project
+        project_hash = get_project_info(project)
+        project_list.append(project_hash)
+      end
+      return project_list
+    end
+
+    #获取用户评论过的项目
+    def get_commented_projects
+      @comments = @user.comments.select(:project_id).distinct
+      project_list = Array.new
+      @comments.each do |comment|
+        project_hash = Hash.new
+        project = comment.project
+        project_hash = get_project_info(project)
+        project_list.append(project_hash)
+      end
+      return project_list
+    end
+
+    def get_shared_projects
+      @projects = @shared_projects = @user.projects.all.distinct
+      project_list = Array.new
+      @projects.each do |project|
+        project_hash = get_project_info(project)
+        project_list.append(project_hash)
+      end
+      return project_list
+    end
+
+    def get_project_info(project)
+      project_hash = Hash.new
+      project_hash.store('project', project)
+      project_hash.store('stars_num', project.stars.count)
+      top_stars = project.stars.take(4)
+      star_user_list = Array.new
+      top_stars.each do |data|
+        user_hash = Hash.new
+        user_hash.store('user_id', data.user.id)
+        user_hash.store('user_avatar',data.user.avatar)
+        star_user_list.append(user_hash)
+      end
+      project_hash.store('star_users', star_user_list)
+      return project_hash
     end
 end
