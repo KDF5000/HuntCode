@@ -197,16 +197,19 @@
         </div>
       </div>
       <div class="projects-wapper">
-        <!--<h4 class="date">12月12日</h4>-->
         <ul id="day-project-list" class="project-list list-unstyled">
+
+          <% @projects.each do |project| %>
           <li class="data-li">
             <button class="btn fl up_bt">
               <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
+              <!-- TODO 点赞 -->
               <span class="up_num ">12</span>
             </button>
+            <!-- TODO 项目 -->
             <div class="project-des fl">
-              <h4><a href="#">大数据框架Spark</a></h4>
-              <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
+              <h4><a href="/projects/<%= project.id %>"><%= project.title %></a></h4>
+              <p><%= project.intro_content %></p>
             </div>
             <div class="up_user_list fr">
               <ul class="nav nav-pills">
@@ -216,108 +219,15 @@
                 <li class="user_ava_li">
                   <img class="img-responsive user-avatar" src="/images/logo.png"></img>
                   <div class="project-comment">
+                    <!-- TODO 评论 -->
                     <a class="project-comments">2</a>
                   </div>
                 </li>
               </ul>
             </div>
           </li>
-          <li class="data-li">
-            <button class="btn fl up_bt">
-              <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-              <span class="up_num ">12</span>
-            </button>
-            <div class="project-des fl">
-              <h4><a href="#">大数据框架Spark</a></h4>
-              <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-            </div>
-            <div class="up_user_list fr">
-              <ul class="nav nav-pills">
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                  <div class="project-comment">
-                    <a class="project-comments">1</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="data-li">
-            <button class="btn fl up_bt">
-              <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-              <span class="up_num ">12</span>
-            </button>
-            <div class="project-des fl">
-              <h4><a href="#">大数据框架Spark</a></h4>
-              <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-            </div>
-            <div class="up_user_list fr">
-              <ul class="nav nav-pills">
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                </li>
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                </li>
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                  <div class="project-comment">
-                    <a class="project-comments">11</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="data-li">
-            <button class="btn fl up_bt">
-              <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-              <span class="up_num ">12</span>
-            </button>
-            <div class="project-des fl">
-              <h4><a href="#">大数据框架Spark</a></h4>
-              <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-            </div>
-            <div class="up_user_list fr">
-              <ul class="nav nav-pills">
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                </li>
+          <% end %>
 
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                  <div class="project-comment">
-                    <a class="project-comments">23</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="data-li">
-            <button class="btn fl up_bt">
-              <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
-              <span class="up_num ">12</span>
-            </button>
-            <div class="project-des fl">
-              <h4><a href="#">大数据框架Spark</a></h4>
-              <p>处理大数据的开源框架，集成各种机器学习库，值得推荐</p>
-            </div>
-            <div class="up_user_list fr">
-              <ul class="nav nav-pills">
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                </li>
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                </li>
-                <li class="user_ava_li">
-                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
-                  <div class="project-comment">
-                    <a class="project-comments">7</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li>
         </ul>
       </div>
     </li>

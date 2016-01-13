@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
     else
         @user = current_user
     end
+    @projects = Project.all
     render 'index'
   end
 end

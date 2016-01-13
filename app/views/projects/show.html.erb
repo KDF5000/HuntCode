@@ -64,9 +64,10 @@
                 <div>
                     <img src="/images/logo.png" class="avatar img-circle fl">
                     <div class="project-detail-des fl">
-                        <h3><a href="#">大数据框架Spark</a></h3>
-                        <span class="project-content">处理大数据的开源框架，集成各种机器学习库，值得推荐,处理大数据的开源框架，集成各种机器学习库，值得推荐,处理大数据的开源框架，集成各种机器学习库，值得推荐
-                        处理大数据的开源框架，集成各种机器学习库，值得推荐,处理大数据的开源框架，集成各种机器学习库，值得推荐,处理大数据的开源框架，集成各种机器学习库，值得推荐</span>
+                        <h3><a href="#"><%= @project.title %></a></h3>
+                        <span class="project-content">
+                        <%= @project.intro_content %>
+                        </span>
                     </div>
                     <div class="share">
                         <div>分享到:</div>
@@ -91,6 +92,7 @@
                 <div class="clear"></div>
 
                 <div id="comments">
+                    <!-- TODO 评论 -->
                     <span class="comment-tips">评论(10)</span>
                     <div id="comment-form">
                         <form>
