@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :projects
   has_many :stars
+  has_many :comments
   has_one :thirdparty
   has_many :projects, :through=> :stars
   has_many :projects, :through=> :comments

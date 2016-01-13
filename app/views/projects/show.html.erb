@@ -52,10 +52,10 @@
                     <!-- TODO 评论 -->
                     <span class="comment-tips">评论(10)</span>
                     <div id="comment-form">
-                        <form>
-                            <textarea class="form-control" rows="4"></textarea>
-                            <button type="submit" class="btn btn-primary post-comment">提交评论</button>
-                        </form>
+                       <%= form_for(:comment, url: project_comments_path(@project.id)) do |f| %>
+                          <%= f.text_area :content, class: "form-control", placeholder: "看帖不留言，必得肩周炎~", style: "resize: none", rows: "4" %>
+                          <%= f.submit "提交评论", class: "btn btn-primary post-comment" %>
+                       <% end %>
                     </div>
                     <div class="clear"></div>
                     <div class="split-line"></div>

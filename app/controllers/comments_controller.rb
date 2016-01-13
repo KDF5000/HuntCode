@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
 
   # GET /comments
   # GET /comments.json
+  # GET /projects/:project_id/comments
   def index
     @comments = Comment.all
   end
@@ -23,18 +24,35 @@ class CommentsController < ApplicationController
 
   # POST /comments
   # POST /comments.json
+  # POST /projects/:project_id/comments/
   def create
-    @comment = Comment.new(comment_params)
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    @project = Project.find_by_id(params[:project_id])
+    puts @project
+    if self.current_user.nil?
+      redirect_to @project
+      flash[:notice] = '请先登录！'
+      return
     end
+
+    @comment = @project.comments.build(comment_params)
+    @comment.user_id = self.current_user.id
+
+    if @comment.save
+      flash[:notice] = 'Comment successfully created.'
+      puts 'Comment successfully created.'
+    else
+      flash[:notice] = '评论失败!'
+    end
+    redirect_to @project
+    # respond_to do |format|
+    #   if @comment.save
+    #     format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+    #     format.json { render :show, status: :created, location: @comment }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @comment.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /comments/1
