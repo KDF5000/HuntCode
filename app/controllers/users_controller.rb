@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     else
       # format.html { render :new }
       # format.json { render json: @user.errors, status: :unprocessable_entity }
-      print @user.errors.to_json
+      # print @user.errors.to_json
       render 'users/loginReg.html'
     end
     # end
@@ -50,14 +50,18 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    # respond_to do |format|
+    if @user.update(user_params)
+      # format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      # format.json { render :show, status: :ok, location: @user }
+      flash[:success] = "Profile updated"
+      print @user.to_json
+      render "users/show.html.erb"
+    else
+      # format.html { render :edit }
+      # format.json { render json: @user.errors, status: :unprocessable_entity }
+      print @user.errors.to_json
+      render "users/show.html.erb"
     end
   end
 
