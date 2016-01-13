@@ -18,10 +18,31 @@ class ProjectsController < ApplicationController
   def get_projects_by_time
     # 转换为日期格式
     # @projects = Project.where("updated_at >= #{params[:startdate]} AND updated_at <= #{params[:enddate]}")
-    @projects = Project.where("updated_at like :enddate%", {enddate: params[:enddate]})
-    print("--------")
-    print @projects.to_json
-    render json: @projects
+    @projects = Project.where("updated_at like '#{params[:date]}%'")
+    res_data = Array.new
+
+    @projects.each do |project|
+      project_data = Hash.new
+
+      star_num = project.stars.all.count
+      puts star_num
+      stars = project.stars.take(4)  #取前四个
+
+      project_data.store(:project,project)
+      project_data.store(:star_num,star_num)
+      star_user_list = Array.new
+
+      stars.each do |star|
+        user_id = star.user.id
+        user_avatar = star.user.avatar
+        star_user_list.append({:user_id=>user_id, :user_avatar=>user_avatar})
+      end
+      project_data.store(:star_users, star_user_list)
+      res_data.append(project_data)
+    end
+    # @res = {:status=>100, :date=>params[:date],:data=>{'project'}}
+    puts res_data
+    render json: {:status=>100, :date=>params[:date],:data=>res_data}
   end 
 
   # GET /projects/1

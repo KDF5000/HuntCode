@@ -3,6 +3,7 @@
     <script src="/js/BigSlide.js" type="text/javascript"></script>
     <link href="/css/modal.css" type="text/css" rel="stylesheet">
     <script src="/js/index.js" type="text/javascript"></script>
+    <script src="js/jsrender.js" type="text/javascript"></script>
 <% end %>
 
 <body>
@@ -59,17 +60,17 @@
                                     <span class="up_num ">{{:star_num}}</span>
                                 </button>
                                 <div class="project-des fl">
-                                    <h4><a href="{{:source_url}}">{{:title}}</a></h4>
-                                    <p>{{:intro_content}}</p>
+                                    <h4><a href="{{:source_url}}">{{:project.title}}</a></h4>
+                                    <p>{{:project.intro_content}}</p>
                                 </div>
                                 <div class="up_user_list fr">
                                     <ul class="nav nav-pills">
-                                        {{for #data.star_users ~starNun=#data.star_num}}
+                                        {{for #data.star_users ~starNum=#data.star_num}}
                                             {{if #index+1 === #parent.parent.data.star_users.length}}
                                                 <li class="user_ava_li">
                                                     <img class="img-responsive user-avatar" src="logo.png"></img>
                                                     <div class="project-comment">
-                                                        <a class="project-comments">{{:~starNun}}</a>
+                                                        <a class="project-comments">{{:~starNum}}</a>
                                                     </div>
                                                 </li>
                                             {{else}}
@@ -137,7 +138,7 @@
   <!-- 展开剩余日期-->
   <div class="load_pre_date">
     <h3 class="main-color">展开剩余日期</h3>
-    <a href="javascript:void(0)" data-date="2015-12-31" id="load-more-project"class="load_pre_date_icon"></a>
+    <a href="javascript:void(0)" data-date="2016-01-13" id="load-more-project"class="load_pre_date_icon"></a>
   </div>
 </div>
 
@@ -145,7 +146,7 @@
 <script type="text/javascript">
 function ajax_data (startdate){
   $.ajax({
-      url: 'http://localhost:3000/get_projects?enddate='+ startdate,
+      url: 'http://localhost:3000/projects/date/'+ startdate,
       dataType: 'json',
       success: function (data) {
         
