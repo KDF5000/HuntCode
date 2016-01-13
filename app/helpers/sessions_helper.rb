@@ -37,4 +37,12 @@ module SessionsHelper
     self.current_user = nil
   end
 
+  def get_user
+    if signed_in?
+      @current_user
+    else
+      nil
+    end
+  end
+
 end

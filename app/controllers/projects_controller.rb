@@ -4,19 +4,21 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    @user = get_user
     @projects = Project.all
-    render :inline => @projects.to_json
+    # render :inline => @projects.to_json
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @user = get_user
     @project = Project.find(params[:id])
   end
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @new_project = Project.new
   end
 
   # GET /projects/1/edit
