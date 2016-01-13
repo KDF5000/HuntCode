@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112143543) do
+ActiveRecord::Schema.define(version: 20160113161538) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20160112143543) do
     t.string   "avatar"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "intro"
+    t.string   "job"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
