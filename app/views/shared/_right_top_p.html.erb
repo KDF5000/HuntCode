@@ -1,0 +1,35 @@
+
+<div class="container">
+    <div class='head row'>
+        <div class="col-md-4">
+            <div class="input-group">
+                <input type="text" class="form-control" id="search" placeholder="Search">
+                <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="col-md-4  align-center ">
+            <ul class="list-inline" id="menu-list">
+                <li><a href="/">发现</a></li>
+                <li><img src="/images/logo.png" alt="huntcode" class="logo img-circle"></li>
+                <li><a href="/projects">项目库</a></li>
+            </ul>
+
+        </div>
+        <div id="login_reg" class="dropdown col-md-4 align-right">
+            <a id="dropdownMenu1" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                欢迎，<%= @user.x_username %> 
+                <span class="caret"></span>
+            </a>
+            <ul id="dropdown-menu" class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="/">网站主页</a>
+                </li>
+                <li role="presentation">
+                       <%= link_to "退出", signout_path, :method => :delete %>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
