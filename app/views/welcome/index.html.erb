@@ -36,7 +36,58 @@
 
 </div>
 <div class="container">
-    <script id="projectListTmp" type="text/x-jsrender">
+  <script id="projectListTmp" type="text/x-jsrender">
+            <li>
+                <div class="date-time">
+                    <div class="square-content">
+                        <span class="square"></span>
+                        <span class="trigngle-icon"></span>
+                    </div>
+                    <div class="v-line"></div>
+                    <div class=" square-content rotate45">
+                        <span class="square"></span>
+                        <span class="time rotate-45">{{:date}}</span>
+                    </div>
+                </div>
+                <div class="projects-wapper">
+                    <!--<h4 class="date">12月12日</h4>-->
+                    <ul id="day-project-list" class="project-list list-unstyled">
+                        {{for projects}}
+                            <li class="data-li">
+                                <button class="btn fl up_bt">
+                                    <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
+                                    <span class="up_num ">{{:star_num}}</span>
+                                </button>
+                                <div class="project-des fl">
+
+                          <h4><a href="/projects/{{:project.id}}">{{:project.title}}<span class="lang-label label label-info">{{:project.language}}</span></a></h4>
+                                    <p>{{:project.intro_content}}</p>
+                                </div>
+                                <div class="up_user_list fr">
+                                    <ul class="nav nav-pills">
+                                        {{for #data.star_users ~starNum=#data.star_num}}
+                                            {{if #index+1 === #parent.parent.data.star_users.length}}
+                                                <li class="user_ava_li">
+                                                    <img class="img-responsive user-avatar" src="logo.png"></img>
+                                                    <div class="project-comment">
+                                                        <a class="project-comments">{{:~starNum}}</a>
+                                                    </div>
+                                                </li>
+                                            {{else}}
+                                                <li class="user_ava_li">
+                                                    <img class="img-responsive user-avatar" src="logo.png"></img>
+                                                </li>
+                                            {{/if}}
+                                        {{/for}}
+                                    </ul>
+                                </div>
+                            </li>
+                        {{/for}}
+                    </ul>
+                </div>
+            </li>
+    </script>
+    <script id="projectListTmp2" type="text/x-jsrender">
     <li>
         <div class="date-time">
             <div class="square-content">
@@ -103,7 +154,7 @@ function ajax_data (startdate){
     url: '/projects/date/'+ startdate,
     dataType: 'json',
     success: function (data) {
-      var template = $.templates("#projectListTmp");  
+      var template = $.templates("#projectListTmp2");  
       var htmlOutput = template.render(data);  
       var orignal = $("#project-list")[0].innerHTML;
       $("#project-list").html(orignal + htmlOutput);
@@ -116,4 +167,6 @@ ajax_data(project_dates[0]);
 ajax_data(project_dates[1]);
 </script>
 <% end %>
+
+
 
