@@ -9,6 +9,17 @@ class ProjectsController < ApplicationController
     # render :inline => @projects.to_json
   end
 
+  # 按照时间获取项目
+  # 其中，time格式：年月日
+  def get_projects_by_time
+    # 转换为日期格式
+    # @projects = Project.where("updated_at >= #{params[:startdate]} AND updated_at <= #{params[:enddate]}")
+    @projects = Project.where("updated_at >= :enddate", {enddate: params[:enddate]})
+    print("--------")
+    print @projects.to_json
+    render json: @projects
+  end 
+
   # GET /projects/1
   # GET /projects/1.json
   def show
