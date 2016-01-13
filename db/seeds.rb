@@ -38,12 +38,16 @@ projects = [{:title=>"OpenAuth.Net",:language=>".Net",:intro_content=>"项目采
 users = [{:x_username=>"admin",:x_email=>"admin@123.com",:password=> "123456",:password_confirmation=>"123456",:admin=>true}]
 stars = [{:user_id=>1,:project_id=>1},{:user_id=>2,:project_id=>2}]
 
+comments = [{:user_id=>1,:project_id=>1,:content=>"this project is very good"},]
 projects.each do |project|
   Project.create!(project)
 end
 
 stars.each do |star|
   Star.create!(star)
+end
+comments.each do |comment|
+  Comment.create!(comment)
 end
 users.each do |user|
   User.create!(user)
