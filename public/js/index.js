@@ -12,8 +12,8 @@ $(function(){
 
     function loadmore(datetime){
         $.ajax({
-            url: 'demo.php',
-            type: 'POST',
+            url: '/projects/date/'+datetime,
+            type: 'get',
             dataType: 'json',
             data: {id: '1'},
             success: function(data){
@@ -24,6 +24,12 @@ $(function(){
                 }
                 var date_time = data.date
                 var data_list = data.data;
+                if(data_list.length ==0){
+                    alert("没有更多数据了");
+                    $('.load_pre_date').find('h3').text('没有更多数据了');
+                    $("#load-more-project").unbind(); //不能点击
+                    return;
+                }
                 var tmpl = $.templates("#projectListTmp");
                 var data = {date:getDateEn(date_time), projects:data_list};
                 var html = tmpl.render(data);
@@ -31,7 +37,7 @@ $(function(){
                 var dd = new Date(datetime.replace(/-/g,"/"));
                 var next_date = new Date((dd/1000+86400)*1000);
                 var next_date_str = next_date.getFullYear()+"-"+(next_date.getMonth()+1)+"-"+next_date.getDate();
-                alert(next_date_str);
+                //alert(next_date_str);
                 $('#load-more-project').attr('data-date', next_date_str);
             },
             error: function(error){
