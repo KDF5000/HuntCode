@@ -87,6 +87,7 @@
                 </div>
             </li>
     </script>
+    <div id="projects_list">
     <li>
       <div class="date-time">
         <div class="square-content">
@@ -134,6 +135,8 @@
         </ul>
       </div>
     </li>
+
+    </div>
   </ul>
   <!-- 展开剩余日期-->
   <div class="load_pre_date">
@@ -144,12 +147,60 @@
 
 <% content_for :tail do %>
 <script type="text/javascript">
+var project_dates = <%= raw @project_dates %>;
+var template = '<li>
+      <div class="date-time">
+        <div class="square-content">
+          <span class="square"></span>
+          <span class="trigngle-icon"></span>
+        </div>
+        <div class="v-line"></div>
+        <div class=" square-content rotate45">
+          <span class="square"></span>
+          <span class="time rotate-45">DEC 12</span>
+        </div>
+      </div>
+      <div class="projects-wapper">
+        <ul id="day-project-list" class="project-list list-unstyled">
+
+          <% @projects.each do |project| %>
+          <li class="data-li">
+            <button class="btn fl up_bt" data-pid="<%= project.id %>">
+              <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
+              <!-- TODO 点赞 -->
+              <span class="up_num ">12</span>
+            </button>
+            <!-- TODO 项目 -->
+            <div class="project-des fl">
+              <h4><a href="/projects/<%= project.id %>"><%= project.title %><span class="lang-label label label-info"><%= project.language %></span></a></h4>
+              <p><%= project.intro_content[0,65] %></p>
+            </div>
+            <div class="up_user_list fr">
+              <ul class="nav nav-pills">
+                <li class="user_ava_li">
+                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
+                </li>
+                <li class="user_ava_li">
+                  <img class="img-responsive user-avatar" src="/images/logo.png"></img>
+                  <div class="project-comment">
+                    <!-- TODO 评论 -->
+                    <a class="project-comments">2</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <% end %>
+
+        </ul>
+      </div>
+    </li>';
+
 function ajax_data (startdate){
   $.ajax({
       url: 'http://localhost:3000/projects/date/'+ startdate,
       dataType: 'json',
       success: function (data) {
-        
       }
   });
 };

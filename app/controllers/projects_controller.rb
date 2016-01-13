@@ -9,10 +9,6 @@ class ProjectsController < ApplicationController
     # render :inline => @projects.to_json
   end
 
-  def get_project_dates
-    Project.select("date(created_at) as ordered_date order").group("date(created_at)").order("ordered_date")
-  end
-
   # 按照时间获取项目
   # 其中，time格式：年月日
   def get_projects_by_time
