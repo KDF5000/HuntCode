@@ -1,14 +1,16 @@
 /**
  * Created by devin on 1/11/16.
  */
+ 
+var dateEn = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP','OCT', 'NOV', 'DEC'];
+function getDateEn(datetime){
+    //2013-12-12
+    var index = datetime.substr(5,2);
+    // alert(dateEn[parseInt(index)-1]);
+    return dateEn[parseInt(index)-1] + " " +datetime.substr(8,2);
+}
+
 $(function(){
-    var dateEn = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP','OCT', 'NOV', 'DEC'];
-    function getDateEn(datetime){
-        //2013-12-12
-        var index = datetime.substr(5,2);
-        // alert(dateEn[parseInt(index)-1]);
-        return dateEn[parseInt(index)-1] + " " +datetime.substr(8,2);
-    }
 
     function loadmore(datetime){
         $.ajax({
