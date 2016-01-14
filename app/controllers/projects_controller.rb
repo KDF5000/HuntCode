@@ -38,7 +38,12 @@ class ProjectsController < ApplicationController
     end
     # @res = {:status=>100, :date=>params[:date],:data=>{'project'}}
     puts res_data
-    render json: {:status=>100, :date=>params[:date],:data=>res_data}
+    projects = Project.where('created_at < ?', params[:date]).take(1)
+    next_date = ''
+    if projects.count > 0
+      next_date = projects.at(0)[:created_at].strftime("%Y-%m-%d").to_s
+    end
+    render json: {:status=>100, :date=>next_date,:data=>res_data}
   end 
 
   # GET /projects/1
