@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    @user.avatar = "/images/avatar/default.png" #默认的头像
     # respond_to do |format|
     if @user.save
       sign_in(@user)
