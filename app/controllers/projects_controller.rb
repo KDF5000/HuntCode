@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   def get_projects_by_time
     # 转换为日期格式
     # @projects = Project.where("updated_at >= #{params[:startdate]} AND updated_at <= #{params[:enddate]}")
-    @projects = Project.where("updated_at like '#{params[:date]}%'")
+    @projects = Project.where("to_char(updated_at, 'YYYY-MM-DD') like '#{params[:date]}%'")
     res_data = Array.new
 
     @projects.each do |project|

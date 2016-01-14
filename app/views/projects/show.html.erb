@@ -12,7 +12,9 @@
         <div class="project-detail row">
             <div class="project-left col-lg-9">
                 <div>
+                    <% if @user %>
                     <img src="<%= @user.avatar %>" class="avatar img-circle fl">
+                    <% end %>
                     <div class="project-detail-des fl">
                         <h3><a href="javascript:void(0)"><%= @project.title %><span class="lang-label-bg label label-info"><%= @project.language %></span></a></h3>
                         <span class="project-content">
