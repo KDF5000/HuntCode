@@ -35,10 +35,12 @@ projects = [{:title=>"OpenAuth.Net",:language=>".Net",:intro_content=>"项目采
  # users = [{:x_username=>"jinjay",:x_passwd=>"123456",:x_email=>"jinjay@qq.com",:x_projects_id=>1},
  #         {:x_username=>"qy",:x_passwd=>"123456",:x_email=>"qy@qq.com",:x_projects_id=>2}]
 
-users = [{:x_username=>"admin",:x_email=>"admin@123.com",:password=> "123456",:avatar=>'/images/logo.png', :password_confirmation=>"123456",:admin=>true}]
+users = [{:x_username=>"admin",:x_email=>"admin@huntcode.com",:password=> "123456",:avatar=>'/images/avatar/kdf.png', :intro=>"IT`S A MAGIC WORLD`",:job=>"极品码农", :password_confirmation=>"123456",:admin=>true},
+         {:x_username=>"JinJay",:x_email=>"jinjay@huntcode.com",:password=> "123456",:avatar=>'/images/avatar/jinjay.jpeg', :intro=>"Hello,I am JinJay`",:job=>"程序猿", :password_confirmation=>"123456",:admin=>true},
+         {:x_username=>"QiaoYang",:x_email=>"qiaoyang@huntcode.com",:password=> "123456",:avatar=>'/images/avatar/qiaoyang.png', :intro=>"IT`S IS MAGIC`",:job=>"设计狮", :password_confirmation=>"123456",:admin=>true}]
 stars = [{:user_id=>1,:project_id=>1}]
 
-comments = [{:user_id=>1,:project_id=>1,:content=>"this project is very good"},]
+comments = [{:user_id=>1,:project_id=>1,:content=>"这个项目很棒！"},]
 projects.each do |project|
   Project.create!(project)
 end
