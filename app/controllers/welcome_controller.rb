@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   def index
     @user = get_user
-    project_dates = Project.select("date(created_at) as ordered_date").group("date(created_at)").order("ordered_date").limit(1)
+    project_dates = Project.select("date(updated_at) as ordered_date").group("created_at, updated_at").order("ordered_date").limit(1)
     # @project_dates = Array.new
     # project_dates.each do |pd|
     #     @project_dates.append(pd[:ordered_date])
@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
     #   @next_date = ''
     # end
     # 怎么判断project_dates获取的个数
-    @next_date = project_dates.at(0)[:ordered_date]
+    @next_date = project_dates.at(0)[:ordered_date].strftime('%Y-%m-%d')
     render 'index'
   end
 

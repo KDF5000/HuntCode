@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160113161538) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20160113161538) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "comments", ["project_id"], name: "index_comments_on_project_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["project_id"], name: "index_comments_on_project_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "title"
@@ -35,7 +38,7 @@ ActiveRecord::Schema.define(version: 20160113161538) do
     t.string   "language"
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "stars", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,8 +47,8 @@ ActiveRecord::Schema.define(version: 20160113161538) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "stars", ["project_id"], name: "index_stars_on_project_id"
-  add_index "stars", ["user_id"], name: "index_stars_on_user_id"
+  add_index "stars", ["project_id"], name: "index_stars_on_project_id", using: :btree
+  add_index "stars", ["user_id"], name: "index_stars_on_user_id", using: :btree
 
   create_table "subscribes", force: :cascade do |t|
     t.string   "sub_email"
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 20160113161538) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "thirdparties", ["user_id"], name: "index_thirdparties_on_user_id"
+  add_index "thirdparties", ["user_id"], name: "index_thirdparties_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "x_username"
@@ -77,6 +80,6 @@ ActiveRecord::Schema.define(version: 20160113161538) do
     t.string   "job"
   end
 
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
 end
