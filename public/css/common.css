@@ -222,7 +222,7 @@ li.user_ava_li{
     font-size: 16px;
 }
 #dropdown-menu{
-    right: -60px;
+    /*right: -60px;*/
     top: 30px;
 }
 .lang-label{
