@@ -36,7 +36,7 @@ projects = [{:title=>"OpenAuth.Net",:language=>".Net",:intro_content=>"项目采
  #         {:x_username=>"qy",:x_passwd=>"123456",:x_email=>"qy@qq.com",:x_projects_id=>2}]
 
 users = [{:x_username=>"admin",:x_email=>"admin@123.com",:password=> "123456",:password_confirmation=>"123456",:admin=>true}]
-stars = [{:user_id=>1,:project_id=>1},{:user_id=>2,:project_id=>2}]
+stars = [{:user_id=>1,:project_id=>1,:avatar=>'/images/logo.png'},{:user_id=>2,:project_id=>2, :avatar=>"/images/logo.png"}]
 
 comments = [{:user_id=>1,:project_id=>1,:content=>"this project is very good"},]
 projects.each do |project|
