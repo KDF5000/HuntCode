@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     @code = params[:code]
     # 获取access_token
     puts "获取access_token"
-    uri = URI.parse("https://github.com/login/oauth/access_token")
+    uri = URI.parse("http://github.com/login/oauth/access_token")
     data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"http://"+request.raw_host_with_port+"/github/login"}
     res = Net::HTTP.post_form(uri, data)
     info = res.body.split('&')
