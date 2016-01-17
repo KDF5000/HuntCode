@@ -99,14 +99,16 @@ class UsersController < ApplicationController
     # @code = params[:code]
     # 获取access_token
     puts "获取access_token"
-    render :json=>{:data=>'success'}.to_json
-    # data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"https://"+request.raw_host_with_port+"/github/login"}
-    # response = request_post_ssl("https://github.com/login/oauth/access_token",data)
+
+    data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"https://"+request.raw_host_with_port+"/github/login"}
+    response = request_post_ssl("https://github.com/login/oauth/access_token",data)
+    puts response
     # info = response.split('&')
     # access_token_arr = info[0].split('=')
     # puts access_token_arr[1]
     # access_token= access_token_arr[1]
     # puts "获取access_token成功!!!!!"
+    render :json=>{:data=>'success'}.to_json
     # #获取用户信息
     # uri = URI.parse('https://api.github.com/user?access_token='+access_token)
     # response = request_get_ssl("https://api.github.com/user?access_token="+access_token)
