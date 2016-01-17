@@ -96,49 +96,54 @@ class UsersController < ApplicationController
   end
 
   def github_login
-    # @code = params[:code]
+    require 'json'
+    @code = params[:code]
     # 获取access_token
     puts "获取access_token"
 
-    data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:"@code", redirect_uri:"https://"+request.raw_host_with_port+"/github/login"}
-    response = request_post_ssl("http://github.com/login/oauth/access_token",data)
+    data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"http://"+request.raw_host_with_port+"/github/login"}
+    response = request_post_ssl("https://github.com/login/oauth/access_token",data)
     puts response
-    # info = response.split('&')
-    # access_token_arr = info[0].split('=')
-    # puts access_token_arr[1]
-    # access_token= access_token_arr[1]
-    # puts "获取access_token成功!!!!!"
-    render :json=>{:data=>'success'}.to_json
-    # #获取用户信息
-    # uri = URI.parse('https://api.github.com/user?access_token='+access_token)
-    # response = request_get_ssl("https://api.github.com/user?access_token="+access_token)
-    # res = JSON.parse response
-    # @identifier = res['id']
+    info = response.split('&')
+    access_token_arr = info[0].split('=')
+    puts access_token_arr[1]
+    access_token= access_token_arr[1]
+    puts "获取access_token成功!!!!!"
+    puts access_token
+    #获取用户信息
+    uri = URI.parse('https://api.github.com/user?access_token='+access_token)
+    response = request_get_ssl("https://api.github.com/user?access_token="+access_token)
+    res = JSON.parse response
+    @identifier = res['id']
     # render :json => response.to_json
-    # if Thirdparty.exists?(identifier:@identifier)
-    #   @thirdParty = Thirdparty.find_by_identifier(@identifier)
-    #   print @thirdParty.to_json
-    #   begin
-    #     @user = User.find(@thirdParty.user_id)
-    #     sign_in @user
-    #   rescue
-    #     puts "查找用户失败"
-    #     # redirect_to loginReg_url
-    #   end
-    # else
-    #   #创建一个用户
-    #   puts "创建一个用户"
-    #   @avatar_url = res['avatar_url']
-    #   @user_name = res['login']
-    #   @email = res['email']
-    #   @user = User.create(:x_username=>@user_name, :avatar=>@avatar_url, :x_email=>@email,:password=>"123456",
-    #   :password_confirmation=>"123456")
-    #
-    #   @thirdParty = Thirdparty.create(:identifier=>@identifier, :user_id=>@user.id)
-    #   sign_in @user
-    # end
-    #
-    # redirect_to root_url
+    puts @identifier
+    if Thirdparty.exists?(identifier:@identifier)
+      @thirdParty = Thirdparty.find_by_identifier(@identifier)
+      print @thirdParty.to_json
+      begin
+        @user = User.find(@thirdParty.user_id)
+        sign_in @user
+      rescue
+        puts "查找用户失败"
+        # redirect_to loginReg_url
+      end
+    else
+      #创建一个用户
+      puts "创建一个用户"
+      @avatar_url = res['avatar_url']
+      @user_name = res['login']
+      @email = res['email']
+      if @email.nil?
+        @email = ''
+      end
+      @user = User.create(:x_username=>@user_name, :avatar=>@avatar_url, :x_email=>@email,:password=>"123456",
+      :password_confirmation=>"123456")
+
+      @thirdParty = Thirdparty.create(:identifier=>@identifier, :user_id=>@user.id)
+      sign_in @user
+    end
+
+    redirect_to root_url
   end
 
   def comments
