@@ -96,8 +96,7 @@ class UsersController < ApplicationController
   end
 
   def github_login
-    require 'json'
-    @code = params[:code]
+    # @code = params[:code]
     # 获取access_token
     puts "获取access_token"
     # data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"https://"+request.raw_host_with_port+"/github/login"}
