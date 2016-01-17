@@ -101,19 +101,18 @@ class UsersController < ApplicationController
     # 获取access_token
     puts "获取access_token"
     data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"http://"+request.raw_host_with_port+"/github/login"}
-    response = request_post("https://github.com/login/oauth/access_token",data)
-    render :json => response.to_json
-    # info = res.body.split('&')
-    # access_token_arr = info[0].split('=')
-    # puts access_token_arr[1]
-    # access_token= access_token_arr[1]
-    # puts "获取access_token成功!!!!!"
-    # #获取用户信息
-    # uri = URI.parse('https://api.github.com/user?access_token='+access_token)
-    # response = Net::HTTP.get(uri)
-    # res = JSON.parse response
-    # @identifier = res['id']
-    # render :json => {:id=>@identifier}.to_json
+    response = request_post_ssl("https://github.com/login/oauth/access_token",data)
+    info = response.split('&')
+    access_token_arr = info[0].split('=')
+    puts access_token_arr[1]
+    access_token= access_token_arr[1]
+    puts "获取access_token成功!!!!!"
+    #获取用户信息
+    uri = URI.parse('https://api.github.com/user?access_token='+access_token)
+    response = request_get_ssl("https://api.github.com/user?access_token="+access_token)
+    res = JSON.parse response
+    @identifier = res['id']
+    render :json => {:id=>@identifier}.to_json
     # if Thirdparty.exists?(identifier:@identifier)
     #   @thirdParty = Thirdparty.find_by_identifier(@identifier)
     #   print @thirdParty.to_json
@@ -235,7 +234,7 @@ class UsersController < ApplicationController
       return project_hash
     end
 
-    def request_post(url, data)
+    def request_post_ssl(url, data)
       #https://github.com/login/oauth/access_token
       uri = URI.parse(url)
       # data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"http://"+request.raw_host_with_port+"/github/login"}
@@ -246,6 +245,18 @@ class UsersController < ApplicationController
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       response = http.request(request)
 
+      return response.body
+    end
+
+    def request_get_ssl(url)
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Get.new(uri.request_uri)
+
+      response = http.request(request)
       return response.body
     end
 end
