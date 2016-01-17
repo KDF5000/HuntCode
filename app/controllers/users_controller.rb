@@ -90,25 +90,30 @@ class UsersController < ApplicationController
     end
   end
 
+  #
+  def github_access_token
+    render 'users/access'
+  end
+
   def github_login
     require 'json'
     @code = params[:code]
     # 获取access_token
     puts "获取access_token"
-    uri = URI.parse("https://github.com/login/oauth/access_token")
     data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"http://"+request.raw_host_with_port+"/github/login"}
-    res = Net::HTTP.post_form(uri, data)
+    response = request_post("https://github.com/login/oauth/access_token",data)
+    render :json => response.to_json
     # info = res.body.split('&')
     # access_token_arr = info[0].split('=')
     # puts access_token_arr[1]
     # access_token= access_token_arr[1]
-    puts "获取access_token成功!!!!!"
+    # puts "获取access_token成功!!!!!"
     # #获取用户信息
     # uri = URI.parse('https://api.github.com/user?access_token='+access_token)
     # response = Net::HTTP.get(uri)
     # res = JSON.parse response
     # @identifier = res['id']
-    #
+    # render :json => {:id=>@identifier}.to_json
     # if Thirdparty.exists?(identifier:@identifier)
     #   @thirdParty = Thirdparty.find_by_identifier(@identifier)
     #   print @thirdParty.to_json
@@ -117,7 +122,7 @@ class UsersController < ApplicationController
     #     sign_in @user
     #   rescue
     #     puts "查找用户失败"
-    #     redirect_to loginReg_url
+    #     # redirect_to loginReg_url
     #   end
     # else
     #   #创建一个用户
@@ -131,8 +136,8 @@ class UsersController < ApplicationController
     #   @thirdParty = Thirdparty.create(:identifier=>@identifier, :user_id=>@user.id)
     #   sign_in @user
     # end
-
-    redirect_to root_url
+    #
+    # redirect_to root_url
   end
 
   def comments
@@ -228,5 +233,19 @@ class UsersController < ApplicationController
       end
       project_hash.store('star_users', star_user_list)
       return project_hash
+    end
+
+    def request_post(url, data)
+      #https://github.com/login/oauth/access_token
+      uri = URI.parse(url)
+      # data = {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7', code:@code, redirect_uri:"http://"+request.raw_host_with_port+"/github/login"}
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Post.new(uri.request_uri)
+      request.set_form_data(data)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      response = http.request(request)
+
+      return response.body
     end
 end

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="/js/jquery-1.9.1.min.js" type="application/javascript"></script>
+</head>
+<body>
+<script type="text/javascript">
+$(function(){
+    //获取参数
+    function GetQueryString(name){
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  decodeURI(r[2]); return null;
+    }
+    var code = GetQueryString('code');
+    alert(code);
+    $.ajax({
+        url: 'https://github.com/login/oauth/access_token',
+        type: 'post',
+        dataType: 'text/html',
+        data: {client_id:'ea6bbfeb21340b60c869', client_secret:'e6512b8cce7374e6a6d259ee4920b1b8add576f7',
+            code:code, redirect_uri:"http://localhost:3000/github/access_token", state:'hello'},
+        success: function(data){
+            alert('success');
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.readyState + XMLHttpRequest.status + XMLHttpRequest.responseText);
+        }
+    })
+});
+</script>
+
+</body>
+</html>
