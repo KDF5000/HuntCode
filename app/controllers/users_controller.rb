@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    puts @user.to_json
+    # puts @user.to_json
     # print "canshushi",params
 
     # @users = @user..paginate(page: params[:page])
@@ -24,9 +24,9 @@ class UsersController < ApplicationController
     @shared_projects = get_shared_projects
     @commented_projects = get_commented_projects
 
-    puts @stared_projects.to_json
-    puts @shared_projects.to_json
-    puts @commented_projects.to_json
+    # puts @stared_projects.to_json
+    # puts @shared_projects.to_json
+    # puts @commented_projects.to_json
 
     render "users/show.html.erb"
   end

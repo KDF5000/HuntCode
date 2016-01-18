@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 <% 10.times do |n| %>
-projects_<%= n %>:
+comment_<%= n %>:
   id: <%= n+1 %>
   user_id: 1
   project_id: <%= n+1 %>
