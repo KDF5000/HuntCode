@@ -1,15 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  x_id: MyString
-  x_username: MyString
-  x_passwd: MyString
-  x_email: MyString
-  x_projects_id: 
-
-two:
-  x_id: MyString
-  x_username: MyString
-  x_passwd: MyString
-  x_email: MyString
-  x_projects_id: 
+<% 5.times do |n| %>
+user_<%= n %>:
+  id: <%= n+1 %>
+  x_username: <%= "user_#{n}" %>
+  password_digest: '123456'
+  x_email: <%= "user#{n}@huntcode.com" %>
+  avatar: '/images/avatar/qiaoyang.png'
+  intro: "IT`S IS MAGIC`"
+  job: "设计狮"
+  remember_token: '123456'
+  admin: true
+<% end %>
