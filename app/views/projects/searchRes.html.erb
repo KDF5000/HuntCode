@@ -1,0 +1,69 @@
+<% content_for :head do %>
+<link href="/css/searchres.css" type="text/css" rel="stylesheet">
+<% end %>
+
+<body onhashchange="hashChanged();">
+<div class="container">
+    <div class='head row'>
+        <div class="col-md-4">
+          <%= form_for(:project, url: '/projects/search') do |f| %>
+              <div class="input-group">
+                <%= f.text_field :data,class:"form-control", id: "search", placeholder:"搜索" %>
+                <!--<input type="text" class="form-control" id="search" name="data" placeholder="Search">-->
+                <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+              </div>
+          <% end %>
+        </div>
+        <div class="col-md-4  align-center ">
+            <ul class="list-inline" id="menu-list">
+                <li><a href="/">发现</a></li>
+                <li><a href="/"><img src="/images/logo.png" alt="huntcode" class="logo img-circle"></a></li>
+                <li><a href="/projects">项目库</a></li>
+            </ul>
+
+        </div>
+        <div id="login_reg" class="col-md-4 align-right">
+            <a class='' href='/'>返回主页</a>
+        </div>
+    </div>
+</div>
+
+<div class="main container">
+    <div class="reg_login com_width">
+        <ul class="project-list list-unstyled">
+            <% @project_list.each do |project| %>
+            <li class="data-li">
+                <button class="btn fl up_bt">
+                    <span class="up_icon glyphicon glyphicon-triangle-top block"></span>
+                    <span class="up_num "><%= project['project']['stars_num'] %></span>
+                </button>
+                <div class="project-des fl">
+                    <h4><a href="/projects/<%= project['project']['id'] %>"><%= project['project']['title'] %><span class="lang-label label label-info"><%=project['project']['language'] %></span></a></h4>
+                    <p><%= project['project']['intro_content'][0,60] %></p>
+                </div>
+                <div class="up_user_list fr">
+                    <ul class="nav nav-pills">
+                        <% index = 0 ;project['star_users'].each do |user| %>
+                        <% index+= 1; if index == project['star_users'].length %>
+                        <li class="user_ava_li">
+                            <img class="img-responsive user-avatar" src="<%=user['user_avatar']%>"></img>
+                            <div class="project-comment">
+                                <a class="project-comments"><%=project['stars_num'] %></a>
+                            </div>
+                        </li>
+                        <%else%>
+                        <li class="user_ava_li">
+                            <img class="img-responsive user-avatar" src="<%=user['user_avatar']%>"></img>
+                        </li>
+                        <% end%>
+                        <% end %>
+                    </ul>
+                </div>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+
+
+<%= render 'shared/footer'%>

@@ -49,7 +49,7 @@
                         <span class="up_num "><%=star_project['stars_num']%></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="/projects/<%= star_project['project']['id'] %>"><%= star_project['project']['title'] %></a></h4>
+                        <h4><a href="/projects/<%= star_project['project']['id'] %>"><%= star_project['project']['title'] %><span class="lang-label label label-info"><%=star_project['project']['language'] %></span></a></h4>
                         <p><%= star_project['project']['intro_content'][0,65] %></p>
                     </div>
                     <div class="up_user_list fr">
@@ -84,7 +84,7 @@
                         <span class="up_num "><%= project['stars_num'] %></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="/projects/<%= project['project']['id'] %>"><%= project['project']['title'] %></a></h4>
+                        <h4><a href="/projects/<%= project['project']['id'] %>"><%= project['project']['title'] %><span class="lang-label label label-info"><%=project['project']['language'] %></span></a></h4>
                         <p><%= project['project']['intro_content'][0,65] %></p>
                     </div>
                     <div class="up_user_list fr">
@@ -119,7 +119,7 @@
                         <span class="up_num "><%= comment_project['project']['stars_num'] %></span>
                     </button>
                     <div class="project-des fl">
-                        <h4><a href="/projects/<%= comment_project['project']['id'] %>"><%= comment_project['project']['title'] %></a></h4>
+                        <h4><a href="/projects/<%= comment_project['project']['id'] %>"><%= comment_project['project']['title'] %><span class="lang-label label label-info"><%=comment_project['project']['language'] %></span></a></h4>
                         <p><%= comment_project['project']['intro_content'][0,65] %></p>
                     </div>
                     <div class="up_user_list fr">

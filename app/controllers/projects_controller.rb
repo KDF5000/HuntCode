@@ -115,6 +115,19 @@ class ProjectsController < ApplicationController
     end
   end
 
+  #搜索
+  def search
+    @search_text = params[:project][:data]
+
+    @projects = Project.find_by_sql("select * from projects where intro_content ilike '%#{@search_text}%' or language ilike '%#{@search_text}%'" )
+    puts @projects.to_json
+    @project_list = Array.new
+    @projects.each  do |project|
+      project_hash = get_project_info(project)
+      @project_list.append(project_hash)
+    end
+    render 'projects/searchRes'
+  end
   private
     def signed_in_user
       unless signed_in?
@@ -129,5 +142,22 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:title, :intro_content, :source_url)
+    end
+
+
+    def get_project_info(project)
+      project_hash = Hash.new
+      project_hash.store('project', project)
+      project_hash.store('stars_num', project.stars.count)
+      top_stars = project.stars.take(4)
+      star_user_list = Array.new
+      top_stars.each do |data|
+        user_hash = Hash.new
+        user_hash.store('user_id', data.user.id)
+        user_hash.store('user_avatar',data.user.avatar)
+        star_user_list.append(user_hash)
+      end
+      project_hash.store('star_users', star_user_list)
+      return project_hash
     end
 end
