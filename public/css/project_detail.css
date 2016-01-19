@@ -68,6 +68,7 @@
 }
 .share .share-dropdown {
     width: 180px;
+    margin-top: 40px;
 }
 .share-wechat:hover .dropdown-share{
     opacity:1;
