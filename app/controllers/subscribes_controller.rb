@@ -39,6 +39,11 @@ class SubscribesController < ApplicationController
     msg = '订阅成功'
     if status == 0
       msg = '取消订阅成功！'
+    else
+      @projects = Project.take(10)
+      puts @projects.to_json
+      # 发送一个邮件
+      UserMailer.send_mail(@projects, sub_email, 'HuntCode每周项目精选', request.raw_host_with_port).deliver_later
     end
     render :json=>{:status=>100, :msg=>msg}
   end
