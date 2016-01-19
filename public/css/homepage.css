@@ -143,3 +143,11 @@
 #user-subscribe button{
     margin: 10px 0px;
 }
+
+#user_avatar{
+    height: 35px !important;
+}
+#input-warning{
+    color: red;
+    margin-left: 5px;
+}

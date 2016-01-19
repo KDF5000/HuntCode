@@ -1,5 +1,5 @@
- source 'https://rubygems.org'
-#source 'https://ruby.taobao.org'
+ # source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -30,7 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 gem 'unicorn'
-
+#upload imgage
+gem 'carrierwave'
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 

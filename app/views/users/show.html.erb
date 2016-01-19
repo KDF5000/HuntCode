@@ -1,4 +1,6 @@
-
+<% content_for :head do %>
+    <script src="/js/user_show.js" type="text/javascript"></script>
+<% end %>
 <body onhashchange="hashChanged();">
 
 <%= render "shared/right_top_p" %>
@@ -149,51 +151,52 @@
             <!-- 修改个人信息-->
             <div id="user-info-edit" >
                 <span class="form-tips">修改个人信息</span>
-                <form>
+                <%= form_for(:user, url: user_path, method: :patch , :html => {:multipart => true}) do |f| %>
                     <div class="form-group row col-md-8">
                         <label for="user-nickname">昵称</label>
-                        <input  type="email" class="form-control" id="user-nickname" placeholder="<%=@user.x_username %>" value="<%=@user.x_username %>">
+                      <%= f.text_field :x_username, class: "form-control", id:"user-nickname", placeholder:@user.x_username, value: @user.x_username %>
                     </div>
-                    <div class="form-group row col-md-8">
-                        <label for="user-avatar">头像</label>
-                        <img src="<%=@user.avatar %>" class="edit-avatar">
-                        <input type="file" id="user-avatar" >
-                    </div>
+                    <!--<div class="form-group row col-md-8">-->
+                        <!--<label for="user-avatar">头像</label>-->
+                        <!--<%=image_tag @user.avatar, class:'edit-avatar' %>-->
+                        <!--<%= file_field(:user, :avatar, accept: 'image/png,image/gif,image/jpeg', multiple: true) %>-->
+                    <!--</div>-->
                     <div class="form-group row col-md-8">
                         <label for="user-intro">简介</label>
-                        <textarea rows="3"  class="form-control" id="user-intro" placeholder="<%=@user.intro%>" value="<%= @user.intro%>"></textarea>
+                        <%= f.text_area :intro, rows: '3', class: "form-control", id:"user-intro", placeholder: @user.intro, value: @user.intro %>
                     </div>
                     <div class="form-group row col-md-8">
                         <label for="user-job">职业</label>
-                        <input type="text" class="form-control" id="user-job" placeholder="<%=@user.job%>" value="<%=@user.job%>">
+                        <%= f.text_field :job, class: "form-control", id:"user-job", placeholer: @user.job, value: @user.job %>
                     </div>
                     <div class="form-group row col-md-8">
                         <button type="submit" class="btn btn-primary">保存资料</button>
                     </div>
-                </form>
+                <% end %>
             </div>
             <!-- 修改密码-->
             <div class="clear"></div>
             <div id="user-pass-edit" >
                 <span class="form-tips">修改密码</span>
-                <form>
+                <%= form_for(:data, url: '/users/password') do |f| %>
                     <div class="form-group row col-md-8">
                         <label for="user-old-pass">当前密码</label>
-                        <input  type="password" class="form-control" id="user-old-pass" placeholder="当前密码">
+                        <%= f.password_field :old_password, class: "form-control", id:"user-old-pass", placeholder:"当前密码" %>
                     </div>
 
                     <div class="form-group row col-md-8">
                         <label for="user-new-pass">新密码</label>
-                        <input type="password" class="form-control" id="user-new-pass" placeholder="新密码">
+                        <%= f.password_field :new_password, class:'form-control', id:'user-new-pass', placeholder: '新密码'%>
                     </div>
                     <div class="form-group row col-md-8">
                         <label for="user-new-pass-confirm">确认新密码</label>
-                        <input type="password" class="form-control" id="user-new-pass-confirm" placeholder="确认新密码">
+                      <%= f.password_field :new_password_confirm, class:'form-control', id:'user-new-pass-confirm', placeholder: '确认新密码' %>
                     </div>
                     <div class="form-group row col-md-8">
-                        <button type="submit" class="btn btn-primary">确认修改</button>
+                        <a href="javascript:void(0)" id="changePassBt"  class="btn btn-primary">确认修改</a>
+                        <span id="input-warning"><%=flash[:message]%></span>
                     </div>
-                </form>
+                <% end %>
             </div>
             <!-- 订阅-->
             <div class="clear"></div>

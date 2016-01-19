@@ -66,18 +66,40 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     # respond_to do |format|
-    if @user.update(user_params)
+    puts user_params
+    if @user.update_columns(user_params)
       # format.html { redirect_to @user, notice: 'User was successfully updated.' }
       # format.json { render :show, status: :ok, location: @user }
       flash[:success] = "Profile updated"
       print @user.to_json
-      render "users/show.html.erb"
+      redirect_to @user
     else
       # format.html { render :edit }
       # format.json { render json: @user.errors, status: :unprocessable_entity }
       print @user.errors.to_json
-      render "users/show.html.erb"
+      redirect_to @user
     end
+  end
+
+  def update_pass
+      @user_data = params[:data]
+      old_pass = @user_data[:old_password]
+      new_pass = @user_data[:new_password]
+      @current_user = get_user
+      puts @current_user.to_json
+      puts @user_data.to_json
+      puts @current_user.authenticate(old_pass)
+      if @current_user.authenticate(old_pass)
+        @current_user.password = new_pass
+        if @current_user.update(password: new_pass)
+          flash[:message] = '密码修改成功'
+        else
+          flash[:message] = '修改密码失败'
+        end
+      else
+        flash[:message] = '原始密码输入错误'
+      end
+    redirect_to '/users/'+@current_user.id.to_s+'#user-info'
   end
 
   # DELETE /users/1
@@ -178,7 +200,7 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
 
     def user_params
-      params.require(:user).permit(:x_username, :x_email, :password,:password_confirmation)
+      params.require(:user).permit(:x_username, :x_email, :password,:password_confirmation, :avatar, :intro, :job, {avatar: []})
     end
 
     def correct_user

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   match '/github/access_token', to:'users#github_access_token', via: 'get'
   match '/github/login', to:'users#github_login', via: 'post'
   match '/projects/search', to:'projects#search', via: 'post'
+  match '/users/password', to:'users#update_pass', via: 'post'
   # Example resource route with options:
   #   resources :products do
   #     member do
