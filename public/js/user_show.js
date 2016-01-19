@@ -30,8 +30,8 @@ $(function(){
     });
 
     $('#sub-confirm').on('click', function(event){
-        var checked = $('#sub-redio input[name="subRadio"]:checked').val();
-        //alert(checked);
+        var checked = $('#sub-radio input[name="subRadio"]:checked').val();
+        alert(checked);
         var email = $('#user-email').val();
         //alert(email);
         var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;
