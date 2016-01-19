@@ -23,7 +23,7 @@ $(function(){
             success: function (data) {
                 var status = data.status;
                 if (status != 100) {
-                    //alert(data.msg);
+                    alert(data.msg);
                     return;
                 }
                 upNumDom.text(parseInt(currNum)+1)
