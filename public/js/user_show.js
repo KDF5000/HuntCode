@@ -29,4 +29,35 @@ $(function(){
         }
     });
 
+    $('#sub-confirm').on('click', function(event){
+        var checked = $('#sub-redio input[name="subRadio"]:checked').val();
+        //alert(checked);
+        var email = $('#user-email').val();
+        //alert(email);
+        var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;
+        if (!Regex.test(email)){
+            $("#sub-warning").text("请输入合法的邮箱！");
+            return;
+        }
+        $.ajax({
+            url: "/subscribes/",
+            type: 'POST',
+            dataType: 'json',
+            data: {sub_email:email, status:checked},
+            success: function (data) {
+                var status = data.status;
+                if (status == 100) {
+                    $("#sub-warning").text(data.msg);
+                    return;
+                }
+            },
+            error: function (error) {
+                alert('error');
+                //$.each(eval("("+error+")"), function(index, el) {
+                //    alert(el);
+                //});
+            }
+        });
+    });
+
 });

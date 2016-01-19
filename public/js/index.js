@@ -96,4 +96,33 @@ $(function(){
     // 点赞
     $('body').on('click','.up_bt' ,click_up);
 
+    $('#sub-confirm').on('click', function(event){
+        var email = $('#sub-email').val();
+        //alert(email);
+        var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;
+        if (!Regex.test(email)){
+            alert("请输入合法的邮箱！");
+            return;
+        }
+        $.ajax({
+            url: "/subscribes/",
+            type: 'POST',
+            dataType: 'json',
+            data: {sub_email:email, status:1},
+            success: function (data) {
+                var status = data.status;
+                if (status == 100) {
+                    alert(data.msg);
+                    $('#sub-email').val('');
+                    return;
+                }
+            },
+            error: function (error) {
+                alert('error');
+                //$.each(eval("("+error+")"), function(index, el) {
+                //    alert(el);
+                //});
+            }
+        });
+    });
 });

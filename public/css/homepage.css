@@ -147,7 +147,7 @@
 #user_avatar{
     height: 35px !important;
 }
-#input-warning{
+.warning{
     color: red;
     margin-left: 5px;
 }

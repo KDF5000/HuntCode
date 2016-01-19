@@ -117,7 +117,7 @@ class ProjectsController < ApplicationController
 
   #搜索
   def search
-    @search_text = params[:project][:data]
+    @search_text = params[:data][:data]
 
     @projects = Project.find_by_sql("select * from projects where intro_content ilike '%#{@search_text}%' or language ilike '%#{@search_text}%'" )
     puts @projects.to_json
