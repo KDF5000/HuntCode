@@ -1,6 +1,5 @@
 **HuntCode**, 高级软件工程练习项目
-
-[TOC]
+演示地址: [http://huntcode.herokuapp.com/](http://huntcode.herokuapp.com/)
 
 # 系统框架搭建
 ```zsh
